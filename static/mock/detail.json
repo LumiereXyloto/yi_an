@@ -1,0 +1,25 @@
+{
+  "ret": true,
+  "data": {
+    "sightName": "茶山竹海(AAAA景区)",
+    "bannerImg": "http://img1.qunarzz.com/sight/p0/1507/93/2405015feb576b0de03df2d0fba3f71e.water.jpg_600x330_3f1edd82.jpg",
+    "gallaryImgs": ["http://img1.qunarzz.com/sight/p0/1507/93/2405015feb576b0de03df2d0fba3f71e.water.jpg_r_800x800_a87b4112.jpg", "http://img1.qunarzz.com/sight/p0/1507/34/d4c686e8607a5449e2a86cf46995377c.water.jpg_r_800x800_2d028186.jpg"],
+    "categoryList": [{
+        "title": "成人票",
+        "children": [{
+          "title": "成人套票A(递归一次)",
+          "children": [{
+            "title": "成人套票(递归两次)"
+          }]
+        },{
+          "title": "成人套票B"
+        }]
+      }, {
+        "title": "学生票"
+      }, {
+        "title": "儿童票"
+      }, {
+        "title": "特惠票"
+      }]
+  }
+}
