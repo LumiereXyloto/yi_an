@@ -17,14 +17,16 @@
     </div>
     <div class="login-button">注册</div>
     <div class="footer-info">
-      <span>登录即同意</span>
+      <span>注册即同意</span>
       <span class="color-text">《易安兼职使用协议》</span>
       <span>&</span>
       <span class="color-text">《隐私权条款》</span>
     </div>
     <div class="footer-info">
-      <span>还没账号？</span>
-      <span class="color-text underline-text">注册</span>
+      <span>已有账号？</span>
+      <router-link to="/login">
+        <span class="color-text underline-text">登录</span>
+      </router-link>
     </div>
   </div>
 </template>

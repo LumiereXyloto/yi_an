@@ -9,7 +9,7 @@
     </div>
     <div class="input-wrapper">
       <input class="input" type="text" placeholder="用户名">
-      <input class="input" type="text" placeholder="请填写密码">
+      <input class="input" type="password" placeholder="请填写密码">
     </div>
     <div class="login-button">登录</div>
     <div class="footer-info">
@@ -20,7 +20,9 @@
     </div>
     <div class="footer-info">
       <span>还没账号？</span>
-      <span class="color-text">注册</span>
+      <router-link to="/register">
+        <span class="color-text">注册</span>
+      </router-link>
     </div>
   </div>
 </template>
