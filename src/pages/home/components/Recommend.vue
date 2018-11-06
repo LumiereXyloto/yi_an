@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="recommend-title">热销推荐</div>
+    <div class="recommend-title">兼职推荐</div>
     <ul>
       <router-link
         tag="li"
@@ -9,13 +9,16 @@
         :key="item.id"
         :to="'/detail/' + item.id"
       >
-        <div class="item-img-wraper">
-          <img :src="item.imgUrl" class="item-img">
+        <div class="item-img-wrapper">
+          <img src="@/assets/images/logo.png" class="item-img">
         </div>
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
-          <p class="item-desc">{{item.desc}}</p>
-          <button class="item-button">查看详情</button>
+          <p class="item-brief">{{item.brief}}</p>
+          <div class="reward-and-num">
+            <p class="item-reward">{{item.reward}}</p>
+            <p class="item-num">供需:{{item.nowNum}}/{{item.hireNum}}</p>
+          </div>
         </div>
       </router-link>
     </ul>
@@ -25,75 +28,97 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  props: {
-    list: Array
+  data () {
+    return {
+      list: [{
+        id: '0001',
+        title: '15栋超市兼职',
+        brief: '简要介绍哈哈哈哈哈哈哈哈哈哈哈哈哈哈超出部分不可以造成样式混乱',
+        hireNum: '5',
+        nowNum: '2',
+        status: 'isSign',
+        reward: '20/h'
+
+      }, {
+        id: '0002',
+        title: '大茶杯奶茶销售员兼职',
+        brief: '这里是简要的介绍',
+        hireNum: '4',
+        nowNum: '3',
+        status: 'notSign',
+        reward: '80/天'
+      }, {
+        id: '0003',
+        title: '大茶杯奶茶销售员兼职',
+        brief: '这里是简要的介绍',
+        hireNum: '4',
+        nowNum: '3',
+        status: 'notSign',
+        reward: '80/天'
+      }, {
+        id: '0004',
+        title: '大茶杯奶茶销售员兼职',
+        brief: '这里是简要的介绍',
+        hireNum: '4',
+        nowNum: '3',
+        status: 'notSign',
+        reward: '80/天'
+      }, {
+        id: '0005',
+        title: '大茶杯奶茶销售员兼职',
+        brief: '这里是简要的介绍',
+        hireNum: '4',
+        nowNum: '3',
+        status: 'notSign',
+        reward: '80/天'
+      }]
+    }
   }
-  // data () {
-  //   return {
-  //     recommendList: [{
-  //       id: '0001',
-  //       imgUrl: 'http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg',
-  //       title: '武隆天坑地缝国家地质公园',
-  //       desc: '详情介绍/星级/评论数'
-  //     }, {
-  //       id: '0002',
-  //       imgUrl: 'http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg',
-  //       title: '武隆天坑地缝国家地质公园',
-  //       desc: '详情介绍/星级/评论数'
-  //     }, {
-  //       id: '0003',
-  //       imgUrl: 'http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg',
-  //       title: '武隆天坑地缝国家地质公园',
-  //       desc: '详情介绍/星级/评论数'
-  //     }, {
-  //       id: '0004',
-  //       imgUrl: 'http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg',
-  //       title: '武隆天坑地缝国家地质公园',
-  //       desc: '详情介绍/星级/评论数'
-  //     }, {
-  //       id: '0005',
-  //       imgUrl: 'http://img1.qunarzz.com/sight/p0/1505/be/be4802e10f3b3107.water.jpg_200x200_0e98aabe.jpg',
-  //       title: '武隆天坑地缝国家地质公园',
-  //       desc: '详情介绍/星级/评论数'
-  //     }]
-  //   }
-  // }
 }
 </script>
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/mixins.styl'
+  @import '~@/assets/styles/varibles.styl'
   .recommend-title
     margin-top: .2rem
     background: #eeeeee
     line-height: .8rem
     text-indent: .2rem
   .item
-    overflow: hidden
-    display: flex
-    height: 1.9rem
-    .item-img
-      height: 1.7rem
-      width: 1.7rem
-      padding: .1rem
+    display flex
+    .item-img-wrapper
+      display flex
+      justify-content center
+      align-items center
+      height 1.8rem
+      .item-img
+        width 1.2rem
+        height 1.2rem
+        padding .3rem
     .item-info
       flex: 1
       padding: .1rem
       min-width: 0
       .item-title
-        line-height: .54rem
-        font-size: .32rem
         ellipsis()
-      .item-desc
-        line-height: .4rem
-        color: #ccc
+        font-size .36rem
+        padding .1rem 0
+      .item-brief
         ellipsis()
-      .item-button
-        line-height: .44rem
-        margin-top: .18rem
-        background: #ff9300
-        padding: 0 .1rem
-        border-radius: .06rem
-        color: #fff
+        color #ADADAD
+        padding .1rem 0
+      .reward-and-num
+        display flex
+        justify-content space-between
+        padding-right .8rem
+        .item-reward
+          color #FE7418
+          font-size .32rem
+          padding .1rem 0
+        .item-num
+          color #ADADAD
+          font-size .3rem
+          padding .1rem 0
 
 </style>
