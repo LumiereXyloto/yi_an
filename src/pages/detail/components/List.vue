@@ -4,14 +4,35 @@
       class="item"
       v-for="(item, index) of list"
       :key="index"
-    >
-      <div class="item-title border-bottom">
-        <span class="item-title-icon"></span>
-        {{item.title}}
+    > 
+      <div style="height:50rem"></div>
+      <div class="item-title">{{item.title}}</div>
+      <div class="item-location">{{item.location}}</div>
+      <div>
+        <span class="grey">基本工资：</span>
+        <span class="black">{{item.reward}}元/{{item.rewardType}}</span>
       </div>
-      <div v-if="item.children">
-        <detail-list :list="item.children" class="item-children"></detail-list>
+      <div class="color-block"></div>
+      <div>
+        <span class="grey">兼职类型：</span>
+        <span class="black">{{item.jobType}}</span>
       </div>
+      <div>
+        <span class="grey">招聘人数：</span>
+        <span class="black">{{item.hireNum}}</span>
+      </div>
+      <div>
+        <span class="grey">已聘人数：</span>
+        <span class="black">{{item.nowNum}}</span>
+      </div>
+      <div class="color-block"></div>
+      <div class="detail-title">工作内容</div>
+      <div>若发现实际工作内容与上述描述不符，请您提高警惕并第一时间向我们举报</div>
+      <div class="detail">{{item.jobContent}}</div>
+      <div class="color-block"></div>
+      <div class="merchant-name">联系人: {{item.merchantName}}</div>
+      <div class="merchant-type">联系方式: {{item.merchantPhone}}</div>
+      <div class="warn">（提示：凡收取费用的兼职，需谨慎！）</div>
     </div>
   </div>
 </template>
@@ -19,27 +40,45 @@
 <script>
 export default {
   name: 'DetailList',
-  props: {
-    list: Array
+  // props: {
+  //   list: Array
+  // }
+  data () {
+    return {
+      list: [{
+        time: '2018/11/07',
+        title: '重邮街吧兼职', // 怎么标题都没有
+        location: '15栋街吧奶茶店',
+        rewardType: '小时',
+        reward: '17',
+        jobType: '临时工', // 兼职类型加上
+        hireNum: '2',
+        nowNum: '1',
+        merchantPhone: '18723287654',
+        merchantId: '0001',
+        merchantName: '李博文', // 联系人名字都没有吗
+        isSignOrNot: '未报名',
+        jobContent: '工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明'
+      }]
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
   .item-title
-    line-height: .8rem
-    font-size: .32rem
-    padding: 0 .2rem
-    .item-title-icon
-      position: relative
-      left: .06rem
-      top: .06rem
-      display: inline-block
-      width: .36rem
-      height: .36rem
-      background: url(http://s.qunarzz.com/piao/image/touch/sight/detail.png) 0 -.45rem no-repeat
-      margin-right: .1rem
-      background-size: .4rem 3rem
-  .item-children
-    padding: 0 .2rem
+    font-size .38rem
+    padding .4rem .4rem
+  .item-location
+    font-size .24rem
+    color grey
+    padding-left .8rem
+  .grey
+    font-size .28rem
+    color #979797
+  .black
+    font-size .32rem
+  .color-block
+    height .25rem
+    background-color #EFEFF4
 </style>

@@ -29,7 +29,9 @@ export default {
     line-height: $headerHeight
     text-align: center
     color: #fff
-    background: $bgColor
+    background: -webkit-linear-gradient(
+    left,$bgColor,#1C8DFF,#0B85FF,#007BF7
+    )
     font-size: .32rem
     .header-back
       width: .64rem
@@ -46,7 +48,9 @@ export default {
   .color-block
     width 100%
     height 1.3rem
-    background-color $bgColor
+    background: -webkit-linear-gradient(
+    left,$bgColor,#1C8DFF,#0B85FF,#007BF7
+    )
   .img-block
     display flex
     justify-content center

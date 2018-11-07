@@ -29,7 +29,9 @@ export default {
   .header
     display: flex
     line-height: $headerHeight
-    background: $bgColor
+    background: -webkit-linear-gradient(
+    left,$bgColor,#1C8DFF,#0B85FF
+    )
     color: #ffffff
     .header-left
       width: .64rem

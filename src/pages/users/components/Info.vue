@@ -103,7 +103,7 @@ export default {
     height: .8rem
     line-height: .8rem
     border-radius: .4rem
-    background: rgba(0, 0, 0, .8)
+    background: rgba(0, 0, 0, .3)
     .header-abs-back
       color: #ffffff
       font-size: .4rem

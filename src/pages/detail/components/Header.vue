@@ -6,7 +6,14 @@
       class="header-abs"
       v-show="showAbs"
     >
-      <div class="iconfont header-abs-back">&#xe624;</div>
+      <div class="header">
+        <div class="header-left">
+          <div class="iconfont back-icon">&#xe624;</div>
+        </div>
+        <div class="header-title">
+          兼职详情
+        </div>
+      </div>
     </router-link>
     <div
       class="header-fixed"
@@ -16,7 +23,7 @@
       <router-link to="/">
         <div class="iconfont header-fixed-back">&#xe624;</div>
       </router-link>
-      景点详情
+      兼职详情
     </div>
   </div>
 </template>
@@ -58,19 +65,25 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl';
-  .header-abs
-    text-align: center
-    position: absolute
-    left: .2rem
-    top: .2rem
-    width: .8rem
-    height: .8rem
-    line-height: .8rem
-    border-radius: .4rem
-    background: rgba(0, 0, 0, .8)
-    .header-abs-back
-      color: #ffffff
-      font-size: .4rem
+  .header
+    display: flex
+    line-height: $headerHeight
+    .header-left
+      width: .64rem
+      float: left
+      color $bgColor
+      font-weight 600
+      .back-icon
+        text-align: center
+        font-size: .4rem
+    .header-title
+      flex: 1
+      height: .86rem
+      line-height: .86rem
+      margin-right: .64rem
+      font-size: .36rem
+      color: black
+      text-align: center
   .header-fixed
     position: fixed
     z-index: 2
