@@ -33,7 +33,33 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+
+    }
+  },
+  method: {
+    sendInfo () {
+      axios.post('http://equator8848.xyz:8848/yian/account/register.do', {
+        uid: this.uid,
+        psw: this.psw,
+        authCode: this.code,
+        userType: this.type
+      })
+        .then(this.sendInfoSucc)
+    },
+    sendInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  }
 }
 </script>
 

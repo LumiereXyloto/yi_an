@@ -1,21 +1,23 @@
 <template>
   <div>
     <detail-header></detail-header>
+    <div class="null-content"></div>
     <detail-list :list="list"></detail-list>
-    <div class="content"></div>
+    <detail-footer></detail-footer>
   </div>
 </template>
 
 <script>
 import DetailHeader from './components/Header'
 import DetailList from './components/List'
+import DetailFooter from './components/Footer'
 import axios from 'axios'
 export default {
   name: 'Detail',
   components: {
-
     DetailHeader,
-    DetailList
+    DetailList,
+    DetailFooter
   },
   data () {
     return {
@@ -54,6 +56,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .content
-    height: 20rem
+  .null-content
+    height .86rem
 </style>

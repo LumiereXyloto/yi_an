@@ -2,14 +2,16 @@
   <div class="wrapper">
     <div class="header-info">
       <div class="info">帮助</div>
-      <div class="info">注册</div>
+      <router-link to="/register">
+        <div class="info">注册</div>
+      </router-link>
     </div>
     <div class="logo-wrapper">
       <img class="logo" src="@/assets/images/logo.png" alt="gg">
     </div>
     <div class="input-wrapper">
-      <input class="input" type="text" placeholder="用户名">
-      <input class="input" type="password" placeholder="请填写密码">
+      <input class="input" type="text" placeholder="用户名" v-model="list.uid">
+      <input class="input" type="password" placeholder="请填写密码" v-model="list.psw">
     </div>
     <div class="login-button">登录</div>
     <div class="footer-info">
@@ -29,7 +31,34 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      list: {
+        uid: '',
+        psw: ''
+      }
+    }
+  },
+  methods: {
+    sendInfo () {
+      axios.post('http://equator8848.xyz:8848/yian/account/userLogin.do', {
+        uid: this.uid,
+        psd: this.psd
+      })
+        .then(this.sendInfoSucc)
+    },
+    sendInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  }
 }
 </script>
 
