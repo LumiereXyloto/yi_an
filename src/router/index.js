@@ -15,14 +15,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
-    path: '/',
-    name: 'Home',
-    component: Home
-  }, {
-    path: '/detail/:id',
-    name: 'Detail',
-    component: Detail
-  }, {
     path: '/login',
     name: 'Login',
     component: Login
@@ -30,6 +22,14 @@ export default new Router({
     path: '/register',
     name: 'Register',
     component: Register
+  }, {
+    path: '/',
+    name: 'Home',
+    component: Home
+  }, {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: Detail
   }, {
     path: '/user',
     name: 'User',

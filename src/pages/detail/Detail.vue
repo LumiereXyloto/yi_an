@@ -11,7 +11,7 @@
 import DetailHeader from './components/Header'
 import DetailList from './components/List'
 import DetailFooter from './components/Footer'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'Detail',
   components: {

@@ -13,7 +13,7 @@
       <input class="input" type="text" placeholder="用户名" v-model="list.uid">
       <input class="input" type="password" placeholder="请填写密码" v-model="list.psw">
     </div>
-    <div class="login-button">登录</div>
+    <div class="login-button" @click="sendInfo">登录</div>
     <div class="footer-info">
       <span>登录即同意</span>
       <span class="color-text">《易安兼职使用协议》</span>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'Login',
   data () {
@@ -42,20 +44,24 @@ export default {
   },
   methods: {
     sendInfo () {
-      axios.post('http://equator8848.xyz:8848/yian/account/userLogin.do', {
-        uid: this.uid,
-        psd: this.psd
-      })
+      console.log(this.list.uid)
+      console.log(this.list.psw)
+      axios.post('http://equator8848.xyz:8848/yian/account/userLogin.do', qs.stringify({
+        uid: this.list.uid,
+        psw: this.list.psw
+      }))
         .then(this.sendInfoSucc)
     },
     sendInfoSucc (res) {
-      res = res.data
-      if (res.ret && res.data) {
-        const data = res.data
-        this.swiperList = data.swiperList
-        this.iconList = data.iconList
-        this.recommendList = data.recommendList
-        this.weekendList = data.weekendList
+      const error = res.data.msg
+      if (res.data.msg == 2) {
+        console.log(res.data.msg)
+        this.$router.replace('/')
+      } else if (res.data.msg == 1) {
+        console.log(res.data.msg)
+        this.$router.replace('/')
+      } else {
+        console.log(error)
       }
     }
   }

@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'DetailList',
   // props: {
@@ -50,22 +52,51 @@ export default {
   // }
   data () {
     return {
-      list: [{
-        time: '2018/11/07',
-        title: '重邮街吧兼职', // 怎么标题都没有
-        location: '15栋街吧奶茶店',
-        rewardType: '小时',
-        reward: '17',
-        jobType: '临时工', // 兼职类型加上
-        hireNum: '2',
-        nowNum: '1',
-        merchantPhone: '18723287654',
-        merchantId: '0001',
-        merchantName: '李博文', // 联系人名字都没有吗
-        isSignOrNot: '未报名',
-        jobContent: '工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明'
-      }]
+      // list: [{
+      //   time: '2018/11/07',
+      //   title: '重邮街吧兼职',
+      //   location: '15栋街吧奶茶店',
+      //   rewardType: '小时',
+      //   reward: '17',
+      //   jobType: '临时工',
+      //   hireNum: '2',
+      //   nowNum: '1',
+      //   merchantPhone: '18723287654',
+      //   merchantId: '0001',
+      //   merchantName: '李博文',
+      //   isSignOrNot: '未报名',
+      //   jobContent: '工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明工作内容说明'
+      // }]
+      list: []
     }
+  },
+  methods: {
+    sendRequest () {
+      axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
+        jobId: '145'
+      }))
+        .then(this.sendRequestSucc)
+    },
+    sendRequestSucc (res) {
+      let result = res.data
+      console.log(result)
+      if(result.status == 1) {
+        console.log(result.data)
+        this.list.jobContent = result.data.details
+        this.list.hireNum = result.data.hireNum
+        this.list.nowNum = result.data.nowNum
+        this.list.isSignOrNot = result.data.isSignOrNot
+        this.list.location = result.data.location
+        this.list.merchantId = result.data.merchantId
+        this.list.merchantName = result.data.merchantName
+        this.list.merchantPhone = result.data.merchantPhone
+        this.list.rewardType = result.data.rewardType
+        this.list.reward = result.data.reward
+      }
+    }
+  },
+  created () {
+    this.sendRequest()
   }
 }
 </script>

@@ -7,15 +7,15 @@
       <img class="logo" src="@/assets/images/logo.png" alt="gg">
     </div>
     <div class="input-wrapper">
-      <input class="input" type="text" placeholder="输入邮箱地址作为账号">
-      <input class="input" type="password" placeholder="请设置密码">
-      <input class="input" type="password" placeholder="请确认密码">
+      <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号">
+      <input class="input" v-model='list.psw' type="password" placeholder="请设置密码">
+      <input class="input" v-model="list.authCode" type="password" placeholder="请确认密码">
       <div class="code-wrapper">
-        <input class="input code-input" type="text" placeholder="请输入验证码">
-        <span class="code">点击获取验证码</span>
+        <input class="input code-input" v-model="list.psw" type="text" placeholder="请输入验证码">
+        <span class="code" @click="sendCode">点击获取验证码</span>
       </div>
     </div>
-    <div class="login-button">注册</div>
+    <div class="login-button" @click="sendInfo">注册</div>
     <div class="footer-info">
       <span>注册即同意</span>
       <span class="color-text">《易安兼职使用协议》</span>
@@ -32,14 +32,20 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'Login',
+  name: 'Register',
   data () {
     return {
-
+      list: [{
+        uid: '',
+        psw: '',
+        authCode: '',
+        userType: ''
+      }]
     }
   },
-  method: {
+  methods: {
     sendInfo () {
       axios.post('http://equator8848.xyz:8848/yian/account/register.do', {
         uid: this.uid,
@@ -51,13 +57,20 @@ export default {
     },
     sendInfoSucc (res) {
       res = res.data
-      if (res.ret && res.data) {
+      if (res.data) {
         const data = res.data
-        this.swiperList = data.swiperList
-        this.iconList = data.iconList
-        this.recommendList = data.recommendList
-        this.weekendList = data.weekendList
+        console.log(this.list)
       }
+    },
+    sendCode () {
+      console.log(this.list.uid)
+      axios.post('http://equator8848.xyz:8848/yian/account/verificationEmail.do', {
+        uid: this.list.uid,
+        action: 'register'
+      })
+        .then((res) => {
+          console.log(res)
+        })
     }
   }
 }

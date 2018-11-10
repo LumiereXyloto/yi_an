@@ -13,8 +13,8 @@
           <img src="@/assets/images/logo.png" class="item-img">
         </div>
         <div class="item-info">
-          <p class="item-title">{{item.title}}</p>
-          <p class="item-brief">{{item.brief}}</p>
+          <p class="item-brief">{{item.title}}</p>
+          <p class="item-time">{{item.brief}}</p>
           <div class="reward-and-num">
             <p class="item-reward">{{item.reward}}</p>
             <p class="item-num">供需:{{item.nowNum}}/{{item.hireNum}}</p>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'HomeRecommend',
   data () {
@@ -33,46 +35,36 @@ export default {
       list: [{
         id: '0001',
         title: '15栋超市兼职',
-        brief: '简要介绍哈哈哈哈哈哈哈哈哈哈哈哈哈哈超出部分不可以造成样式混乱',
+        brief: 'time',
         hireNum: '5',
         nowNum: '2',
         status: 'isSign',
         reward: '20/h'
-
       }, {
         id: '0002',
         title: '大茶杯奶茶销售员兼职',
-        brief: '这里是简要的介绍',
-        hireNum: '4',
-        nowNum: '3',
-        status: 'notSign',
-        reward: '80/天'
-      }, {
-        id: '0003',
-        title: '大茶杯奶茶销售员兼职',
-        brief: '这里是简要的介绍',
-        hireNum: '4',
-        nowNum: '3',
-        status: 'notSign',
-        reward: '80/天'
-      }, {
-        id: '0004',
-        title: '大茶杯奶茶销售员兼职',
-        brief: '这里是简要的介绍',
-        hireNum: '4',
-        nowNum: '3',
-        status: 'notSign',
-        reward: '80/天'
-      }, {
-        id: '0005',
-        title: '大茶杯奶茶销售员兼职',
-        brief: '这里是简要的介绍',
+        brief: 'time',
         hireNum: '4',
         nowNum: '3',
         status: 'notSign',
         reward: '80/天'
       }]
     }
+  },
+  methods: {
+    sendRequest () {
+      axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/allParttime.do', {
+        pageNum: '1',
+        onePageNum: '2'
+      })
+    },
+    sendRequestSucc (res) {
+      console.log(res)
+    }
+  },
+  created () {
+    this.sendRequest()
+      .then(this.sendRequestSucc)
   }
 }
 </script>
@@ -100,13 +92,13 @@ export default {
       flex: 1
       padding: .1rem
       min-width: 0
-      .item-title
+      .item-time
         ellipsis()
-        font-size .36rem
+        color #ADADAD
         padding .1rem 0
       .item-brief
         ellipsis()
-        color #ADADAD
+        font-size .36rem
         padding .1rem 0
       .reward-and-num
         display flex
