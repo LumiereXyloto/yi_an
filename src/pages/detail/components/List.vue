@@ -103,6 +103,8 @@ export default {
     line-height .5rem
   .tip
     padding 0 .4rem .3rem .4rem
+    font-size .24rem
+    font-weight bold
   .warn
     padding .1rem .4rem .3rem .4rem
     color #FF4040
