@@ -1,16 +1,19 @@
 <template>
   <div>
     <merchant-header></merchant-header>
+    <merchant-published></merchant-published>
     <div style="height: 2000px;"></div>
   </div>
 </template>
 
 <script>
 import MerchantHeader from './components/Header'
+import MerchantPublished from './components/Published'
 export default {
   name: 'User',
   components: {
-    MerchantHeader
+    MerchantHeader,
+    MerchantPublished
   },
   data () {
     return {

@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="header">
-      商家中心
-      <router-link to="/">
-        <div class="iconfont header-back">&#xe624;</div>
-      </router-link>
+      <span>商家中心</span>
+      <span class="publish" @click="a">发布</span>
       <span class="exist">注销</span>
     </div>
     <div class="color-block"></div>
@@ -16,7 +14,12 @@
 
 <script>
 export default {
-  name: 'CityHeader'
+  name: 'CityHeader',
+  methods: {
+    a () {
+      alert('aaaaa')
+    }
+  }
 }
 </script>
 
@@ -33,14 +36,10 @@ export default {
     left,$bgColor,#1C8DFF,#0B85FF,#007BF7
     )
     font-size: .32rem
-    .header-back
-      width: .64rem
-      text-align: center
-      font-size: .4rem
-      position: absolute
-      top: 0
-      left: 0
-      color: #ffffff
+    .publish
+      position absolute
+      left 0.2rem
+      font-size .26rem
     .exist
       position absolute
       right 0.2rem
