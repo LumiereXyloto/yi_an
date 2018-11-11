@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     sendRequest () {
-      axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
+      axios.post('http://yian.our16.top:8080/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
         jobId: this.$route.params.jobId
       }))
         .then(this.sendRequestSucc)

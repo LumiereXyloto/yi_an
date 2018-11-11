@@ -10,6 +10,7 @@ import Star from '@/pages/users/components/Star'
 import Info from '@/pages/users/components/Info'
 import Person from '@/pages/users/components/Person'
 import Change from '@/pages/users/components/Change'
+import Merchant from '@/pages/merchant/merchant'
 
 Vue.use(Router)
 
@@ -54,6 +55,10 @@ export default new Router({
     path: '/change',
     name: 'Change',
     component: Change
+  }, {
+    path: '/merchant',
+    name: 'Merchant',
+    component: Merchant
   }],
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
