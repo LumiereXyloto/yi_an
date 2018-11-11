@@ -31,13 +31,14 @@ export default {
         border-bottom 1px solid #E8E8E8
         flex-grow 1
         text-align center
+        background-color #ffffff
       .sign-up
         height $headerHeight
         line-height $headerHeight
         background-color $bgColor
         color #ffffff
-        border-top 1px solid #E8E8E8
-        border-bottom 1px solid #E8E8E8
+        border-top 1px solid $bgColor
+        border-bottom 1px solid $bgColor
         flex-grow 1
         text-align center
 </style>

@@ -6,17 +6,18 @@
         tag="li"
         class="item border-bottom"
         v-for="item of list"
-        :key="item.id"
-        :to="'/detail/' + item.id"
+        :key="item.jobId"
+        :to="'/detail/' + item.jobId"
       >
         <div class="item-img-wrapper">
           <img src="@/assets/images/logo.png" class="item-img">
         </div>
         <div class="item-info">
-          <p class="item-brief">{{item.title}}</p>
-          <p class="item-time">{{item.brief}}</p>
+          <p class="item-brief">{{item.brief}}</p>
+          <p class="item-time">{{item.location}}</p>
+          <p class="item-time">{{item.time}}</p>
           <div class="reward-and-num">
-            <p class="item-reward">{{item.reward}}</p>
+            <p class="item-reward">{{item.reward}}/{{item.rewardType}}</p>
             <p class="item-num">供需:{{item.nowNum}}/{{item.hireNum}}</p>
           </div>
         </div>
@@ -32,39 +33,24 @@ export default {
   name: 'HomeRecommend',
   data () {
     return {
-      list: [{
-        id: '0001',
-        title: '15栋超市兼职',
-        brief: 'time',
-        hireNum: '5',
-        nowNum: '2',
-        status: 'isSign',
-        reward: '20/h'
-      }, {
-        id: '0002',
-        title: '大茶杯奶茶销售员兼职',
-        brief: 'time',
-        hireNum: '4',
-        nowNum: '3',
-        status: 'notSign',
-        reward: '80/天'
-      }]
+      list: []
     }
   },
   methods: {
     sendRequest () {
-      axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/allParttime.do', {
-        pageNum: '1',
-        onePageNum: '2'
-      })
+      axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/allParttime.do', qs.stringify({
+        pageNum: '0',
+        onePageNum: '0'
+      }))
+        .then(this.sendRequestSucc)
     },
     sendRequestSucc (res) {
       console.log(res)
+      this.list = res.data.data
     }
   },
   created () {
     this.sendRequest()
-      .then(this.sendRequestSucc)
   }
 }
 </script>
@@ -83,7 +69,7 @@ export default {
       display flex
       justify-content center
       align-items center
-      height 1.8rem
+      height 2.2rem
       .item-img
         width 1.2rem
         height 1.2rem
@@ -112,5 +98,4 @@ export default {
           color #ADADAD
           font-size .3rem
           padding .1rem 0
-
 </style>

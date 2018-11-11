@@ -54,10 +54,10 @@ export default {
     },
     sendInfoSucc (res) {
       const error = res.data.msg
-      if (res.data.msg == 2) {
+      if (res.data.msg === '2') {
         console.log(res.data.msg)
         this.$router.replace('/')
-      } else if (res.data.msg == 1) {
+      } else if (res.data.msg === '1') {
         console.log(res.data.msg)
         this.$router.replace('/')
       } else {

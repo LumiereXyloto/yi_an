@@ -8,11 +8,19 @@
     </div>
     <div class="input-wrapper">
       <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号">
-      <input class="input" v-model='list.psw' type="password" placeholder="请设置密码">
-      <input class="input" v-model="list.authCode" type="password" placeholder="请确认密码">
+      <input class="input" type="password" placeholder="请设置密码(6-16位)">
+      <input class="input" v-model="list.psw" type="password" placeholder="请确认密码">
       <div class="code-wrapper">
-        <input class="input code-input" v-model="list.psw" type="text" placeholder="请输入验证码">
+        <input class="input code-input" v-model="list.authCode" type="text" placeholder="请输入验证码">
         <span class="code" @click="sendCode">点击获取验证码</span>
+      </div>
+      <div class="radio-wrapper">
+        <label>
+          <input class="radio" type="radio" name="type" value="1" v-model="list.userType">学生
+        </label>
+        <label>
+          <input class="radio" type="radio" name="type" value="2" v-model="list.userType">商家
+        </label>
       </div>
     </div>
     <div class="login-button" @click="sendInfo">注册</div>
@@ -33,6 +41,7 @@
 
 <script>
 import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'Register',
   data () {
@@ -47,29 +56,26 @@ export default {
   },
   methods: {
     sendInfo () {
-      axios.post('http://equator8848.xyz:8848/yian/account/register.do', {
-        uid: this.uid,
-        psw: this.psw,
-        authCode: this.code,
-        userType: this.type
-      })
+      console.log(this.list)
+      axios.post('http://equator8848.xyz:8848/yian/account/register.do', qs.stringify({
+        uid: this.list.uid,
+        psw: this.list.psw,
+        authCode: this.list.authCode,
+        userType: this.list.userType
+      }))
         .then(this.sendInfoSucc)
     },
     sendInfoSucc (res) {
-      res = res.data
-      if (res.data) {
-        const data = res.data
-        console.log(this.list)
-      }
+      console.log(res.data.msg)
     },
     sendCode () {
       console.log(this.list.uid)
-      axios.post('http://equator8848.xyz:8848/yian/account/verificationEmail.do', {
+      axios.post('http://equator8848.xyz:8848/yian/account/verificationEmail.do', qs.stringify({
         uid: this.list.uid,
-        action: 'register'
-      })
+        action: '0'
+      }))
         .then((res) => {
-          console.log(res)
+          console.log(res.data.msg)
         })
     }
   }
@@ -121,6 +127,11 @@ export default {
         padding-right .2rem
       .code-input
         flex-grow 3
+    .radio-wrapper
+      display flex
+      justify-content space-between
+      color #A5A5A5
+      margin 0 30%
   .login-button
     margin: .4rem
     margin-top: .6rem
