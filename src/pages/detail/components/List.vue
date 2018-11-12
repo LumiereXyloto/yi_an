@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import bus from '@/assets/eventBus.js'
 import axios from 'axios'
 import qs from 'qs'
 export default {
@@ -55,7 +56,9 @@ export default {
         nowNum: '',
         details: '',
         merchantName: '',
-        merchantPhone: ''
+        merchantPhone: '',
+        merchantId: '',
+        isSignOrNot: ''
       }
     }
   },
@@ -65,6 +68,9 @@ export default {
         jobId: this.$route.params.jobId
       }))
         .then(this.sendRequestSucc)
+        .then(() => {
+          bus.$emit('emitParams', this.list.merchantId, this.list.jobId, this.list.isSignOrNot)
+        })
     },
     sendRequestSucc (res) {
       console.log(res)

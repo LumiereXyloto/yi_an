@@ -59,8 +59,16 @@ export default {
         this.$router.replace('/')
       } else if (res.data.msg === '1') {
         console.log(res.data.msg)
+        this.$layer.toast({
+          content: '登陆成功',
+          time: 2000 // 自动消失时间 toast类型默认消失时间为2000毫秒
+        })
         this.$router.replace('/')
       } else {
+        this.$layer.toast({
+          content: '登陆失败',
+          time: 2000 // 自动消失时间 toast类型默认消失时间为2000毫秒
+        })
         console.log(error)
       }
     }
