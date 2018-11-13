@@ -1,7 +1,7 @@
 <template>
   <div class="position-wrapper">
     <div class="flex-wrapper">
-      <div class="star">收藏</div>
+      <div class="star" ref="star" @click="star">收藏</div>
       <div class="sign-up" @click="signUp">{{isSignText}}</div>
     </div>
   </div>
@@ -9,6 +9,8 @@
 
 <script>
 import bus from '@/assets/eventBus.js'
+import axios from 'axios'
+import qs from 'qs'
 export default {
   name: 'Footer',
   data () {
@@ -18,7 +20,8 @@ export default {
         jobId: '',
         isSign: ''
       },
-      isSignText: ''
+      isSignText: '',
+      isStar: false
     }
   },
   created () {
@@ -36,40 +39,49 @@ export default {
   },
   methods: {
     signUp () {
-      // this.$layer.dialog({
-      //   title: ['确认报名？', 'background:#ffffff;'], // 第一个是标题内容  第二个是标题栏的style(可以为空)
-      //   // content: '这是内容',
-      //   contentClass: 'className',
-      //   btn: ['确定', '取消'],
-      //   shadeClose: false
-      //   //   time: 2000
-      // })
-      // // 如果有btn
-      //   .then(function (res) {
-      //     // res为0时是用户点击了左边  为1时用户点击了右边
-      //     if (res === 0) {
-
-      //     }
-      //     let position = res === 0 ? 'left' : 'right'
-      //     console.log(position)
-      //   })
+      let _this = this
       this.$layer.open({
         btn: ['确认', '取消'],
-        content: 'hello word',
+        content: '确认报名？',
         className: 'good luck1',
-        shade:true,
-        success(layer) {
-          console.log('layer id is:',layer.id)
+        shade: true,
+        shadeClose: false,
+        success (layer) {
+          console.log('layer id is:', layer.id)
         },
-        yes(index, $layer) {
-          console.log(arguments)
+        yes (index, $layer) {
+          console.log('确定')
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
-          // return false;
+          // return false
+          _this.$layer.closeAll()
+          axios.post('http://yian.our16.top:8080/yian/parttimeHall/applyParttime.do', qs.stringify({
+            jobId: _this.params.jobId,
+            merchantId: _this.params.merchantId
+          }))
+            .then((res) => {
+              console.log(res)
+            })
         },
-        end() {
-          console.log('end')
+        no (index, $layer) {
+          _this.$layer.closeAll()
+          console.log('取消')
+        },
+        end () {
+          console.log('layer end')
         }
       })
+    },
+    star () {
+      this.isStar = !this.isStar
+      if (this.isStar === true) {
+        this.$layer.closeAll()
+        this.$refs.star.innerText = '取消收藏'
+        this.$layer.msg('收藏成功')
+      } else if (this.isStar === false) {
+        this.$layer.closeAll()
+        this.$refs.star.innerText = '收藏'
+        this.$layer.msg('取消成功')
+      }
     }
   }
 }

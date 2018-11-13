@@ -47,6 +47,7 @@ export default {
       console.log(this.list.uid)
       console.log(this.list.psw)
       axios.post('http://equator8848.xyz:8848/yian/account/userLogin.do', qs.stringify({
+      // axios.post('http://jmblog.3w.dkys.org/yian/account/userLogin.do', qs.stringify({
         uid: this.list.uid,
         psw: this.list.psw
       }))
@@ -55,21 +56,19 @@ export default {
     sendInfoSucc (res) {
       const error = res.data.msg
       if (res.data.msg === '2') {
-        console.log(res.data.msg)
+        this.$layer.msg('登录成功', () => {
+          console.log(res.data.msg)// 两秒后执行
+        })
         this.$router.replace('/')
       } else if (res.data.msg === '1') {
-        console.log(res.data.msg)
-        this.$layer.toast({
-          content: '登陆成功',
-          time: 2000 // 自动消失时间 toast类型默认消失时间为2000毫秒
+        this.$layer.msg('登录成功', () => {
+          console.log(res.data.msg)
         })
         this.$router.replace('/')
       } else {
-        this.$layer.toast({
-          content: '登陆失败',
-          time: 2000 // 自动消失时间 toast类型默认消失时间为2000毫秒
+        this.$layer.msg('登录失败', () => {
+          console.log(error)
         })
-        console.log(error)
       }
     }
   }
