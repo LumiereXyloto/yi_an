@@ -16,32 +16,32 @@
       <div class="title">我的个人资料</div>
       <div class="content-wrapper">
         <div class="item-title">学校</div>
-        <div class="item-detail">重庆邮电大学</div>
+        <div class="item-detail">{{list.school}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">学号</div>
-        <div class="item-detail">2017211012</div>
+        <div class="item-detail">{{list.studentId}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">姓名</div>
-        <div class="item-detail">李博文</div>
+        <div class="item-detail">{{list.studentName}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">性别</div>
-        <div class="item-detail">男</div>
+        <div class="item-detail">{{list.studentSex}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">电话</div>
-        <div class="item-detail">18723287690</div>
+        <div class="item-detail">{{list.studentPhone}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">联系</div>
-        <div class="item-detail">Reaper622</div>
+        <div class="item-detail">{{list.studentContactWay}}</div>
       </div>
       <hr>
     </div>
@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import bus from '@/assets/eventBus.js'
 export default {
   name: 'DetailHeader',
   data () {
@@ -59,10 +61,26 @@ export default {
       showAbs: true,
       opacityStyle: {
         opacity: 0
+      },
+      list: {
+        school: '重庆邮电大学',
+        studentId: '18723287690',
+        studentName: '李博文',
+        studentSex: '男',
+        studentPhone: '18723287690',
+        studentContactWay: 'Reaper622'
       }
     }
   },
   methods: {
+    getUserInfo () {
+      axios.post('http://yian.our16.top:8080/yian/student/getPersonalInfor.do', {
+        withCredentials: true
+      })
+        .then((res) => {
+          console.log(res)
+        })
+    },
     handleScroll () {
       const top = document.documentElement.scrollTop
       if (top > 60) {
@@ -79,6 +97,9 @@ export default {
   },
   activated () {
     window.addEventListener('scroll', this.handleScroll)
+    this.getUserInfo()
+    bus.$emit('userInfo', this.list)
+    console.log('oringin', this.list)
   },
   deactivated () {
     window.removeEventListener('scroll', this.handleScroll)

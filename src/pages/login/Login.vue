@@ -46,11 +46,12 @@ export default {
     sendInfo () {
       console.log(this.list.uid)
       console.log(this.list.psw)
-      axios.post('http://equator8848.xyz:8848/yian/account/userLogin.do', qs.stringify({
-      // axios.post('http://jmblog.3w.dkys.org/yian/account/userLogin.do', qs.stringify({
+      axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
         uid: this.list.uid,
         psw: this.list.psw
-      }))
+      }), {
+        withCredentials: true
+      })
         .then(this.sendInfoSucc)
     },
     sendInfoSucc (res) {

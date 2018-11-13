@@ -16,32 +16,32 @@
       <div class="title">我的个人资料</div>
       <div class="content-wrapper">
         <div class="item-title">学校</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.school">
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">学号</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.studentId">
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">姓名</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.studentName">
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">性别</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.studentSex">
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">电话</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.studentPhone">
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">联系</div>
-        <input class="item-detail" type="text">
+        <input class="item-detail" type="text" :placeholder="list.studentContactWay">
       </div>
       <hr>
     </div>
@@ -50,12 +50,24 @@
 </template>
 
 <script>
+import bus from '@/assets/eventBus.js'
 export default {
   name: 'DetailHeader',
   data () {
     return {
-      showAbs: true
+      showAbs: true,
+      list: {}
     }
+  },
+  activated () {
+    bus.$on('userInfo', (listFrom) => {
+      // console.log(listFrom)
+      this.list = listFrom
+    })
+    console.log('placeholder', this.list)
+  },
+  disactivated () {
+    bus.$off()
   }
 }
 </script>

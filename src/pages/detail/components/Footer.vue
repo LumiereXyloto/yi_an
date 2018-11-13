@@ -57,7 +57,9 @@ export default {
           axios.post('http://yian.our16.top:8080/yian/parttimeHall/applyParttime.do', qs.stringify({
             jobId: _this.params.jobId,
             merchantId: _this.params.merchantId
-          }))
+          }), {
+            withCredentials: true
+          })
             .then((res) => {
               console.log(res)
             })

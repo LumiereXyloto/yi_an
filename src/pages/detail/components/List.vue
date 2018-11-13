@@ -66,7 +66,9 @@ export default {
     sendRequest () {
       axios.post('http://yian.our16.top:8080/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
         jobId: this.$route.params.jobId
-      }))
+      }), {
+        withCredentials: true
+      })
         .then(this.sendRequestSucc)
         .then(() => {
           bus.$emit('emitParams', this.list.merchantId, this.list.jobId, this.list.isSignOrNot)

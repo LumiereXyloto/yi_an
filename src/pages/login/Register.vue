@@ -57,12 +57,14 @@ export default {
   methods: {
     sendInfo () {
       console.log(this.list)
-      axios.post('http://equator8848.xyz:8848/yian/account/register.do', qs.stringify({
+      axios.post('http://yian.our16.top:8080/yian/account/register.do', qs.stringify({
         uid: this.list.uid,
         psw: this.list.psw,
         authCode: this.list.authCode,
         userType: this.list.userType
-      }))
+      }), {
+        withCredentials: true
+      })
         .then(this.sendInfoSucc)
     },
     sendInfoSucc (res) {
@@ -70,7 +72,7 @@ export default {
     },
     sendCode () {
       console.log(this.list.uid)
-      axios.post('http://equator8848.xyz:8848/yian/account/verificationEmail.do', qs.stringify({
+      axios.post('http://yian.our16.top:8080/yian/account/verificationEmail.do', qs.stringify({
         uid: this.list.uid,
         action: '0'
       }))

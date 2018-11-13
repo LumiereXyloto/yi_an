@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     sendRequest () {
-      // axios.post('http://jmblog.3w.dkys.org/yian/parttimeHall/allParttime.do', qs.stringify({
       axios.post('http://yian.our16.top:8080/yian/parttimeHall/allParttime.do', qs.stringify({
         pageNum: '1',
         onePageNum: '1'
@@ -50,7 +49,7 @@ export default {
       this.list = res.data.data
     }
   },
-  created () {
+  activated () {
     this.sendRequest()
   }
 }

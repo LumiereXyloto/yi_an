@@ -113,7 +113,9 @@ export default {
         parttimeType: this.typeStore,
         pageNum: '0',
         onePageNum: '0'
-      }))
+      }), {
+        withCredentials: true
+      })
         .then(this.sendRequestSucc)
     },
     sendRequestSucc (res) {

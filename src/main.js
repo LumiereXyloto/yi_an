@@ -14,6 +14,7 @@ import 'swiper/dist/css/swiper.css'
 import ele from 'element-ui'
 import 'vue-layer-mobile/need/layer.css'
 import layer from 'vue2-layer-mobile'
+
 Vue.use(layer)
 Vue.config.productionTip = false
 fasClick.attach(document.body)
