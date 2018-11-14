@@ -30,8 +30,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import qs from 'qs'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
   name: 'Login',
   data () {
@@ -49,9 +50,7 @@ export default {
       axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
         uid: this.list.uid,
         psw: this.list.psw
-      }), {
-        withCredentials: true
-      })
+      }))
         .then(this.sendInfoSucc)
     },
     sendInfoSucc (res) {

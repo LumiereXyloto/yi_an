@@ -27,8 +27,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import qs from 'qs'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
   name: 'HomeRecommend',
   data () {
@@ -49,7 +50,7 @@ export default {
       this.list = res.data.data
     }
   },
-  activated () {
+  mounted () {
     this.sendRequest()
   }
 }

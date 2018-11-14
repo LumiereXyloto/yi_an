@@ -79,7 +79,7 @@ export default {
       this.list = res.data.data
     }
   },
-  activated () {
+  mounted () {
     this.sendRequest()
   }
 }
