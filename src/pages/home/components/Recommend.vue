@@ -1,28 +1,28 @@
 <template>
   <div>
     <div class="recommend-title">兼职推荐</div>
-    <ul>
-      <router-link
-        tag="li"
-        class="item border-bottom"
-        v-for="item of list"
-        :key="item.jobId"
-        :to="'/detail/' + item.jobId"
-      >
-        <div class="item-img-wrapper">
-          <img src="@/assets/images/logo.png" class="item-img">
-        </div>
-        <div class="item-info">
-          <p class="item-brief">{{item.brief}}</p>
-          <p class="item-time">{{item.location}}</p>
-          <p class="item-time">{{item.time}}</p>
-          <div class="reward-and-num">
-            <p class="item-reward">{{item.reward}}/{{item.rewardType}}</p>
-            <p class="item-num">供需:{{item.nowNum}}/{{item.hireNum}}</p>
+      <ul>
+        <router-link
+          tag="li"
+          class="item border-bottom"
+          v-for="item of list"
+          :key="item.jobId"
+          :to="'/detail/' + item.jobId"
+        >
+          <div class="item-img-wrapper">
+            <img src="@/assets/images/logo.png" class="item-img">
           </div>
-        </div>
-      </router-link>
-    </ul>
+          <div class="item-info">
+            <p class="item-brief">{{item.brief}}</p>
+            <p class="item-time">{{item.location}}</p>
+            <p class="item-time">{{item.time}}</p>
+            <div class="reward-and-num">
+              <p class="item-reward">{{item.reward}}/{{item.rewardType}}</p>
+              <p class="item-num">供需:{{item.nowNum}}/{{item.hireNum}}</p>
+            </div>
+          </div>
+        </router-link>
+      </ul>
   </div>
 </template>
 

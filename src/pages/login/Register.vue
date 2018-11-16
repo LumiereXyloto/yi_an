@@ -7,7 +7,7 @@
       <img class="logo" src="@/assets/images/logo.png" alt="gg">
     </div>
     <div class="input-wrapper">
-      <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号">
+      <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号" @blur="checkEmail">
       <input class="input" type="password" placeholder="请设置密码(6-16位)">
       <input class="input" v-model="list.psw" type="password" placeholder="请确认密码">
       <div class="code-wrapper">
@@ -78,6 +78,14 @@ export default {
       }))
         .then((res) => {
           console.log(res.data.msg)
+        })
+    },
+    checkEmail () {
+      axios.post('http://yian.our16.top:8080/yian/account/checkAccountIsExist.do', qs.stringify({
+        uid: this.list.uid
+      }))
+        .then((res) => {
+          this.$layer.msg(res.data.msg)
         })
     }
   }

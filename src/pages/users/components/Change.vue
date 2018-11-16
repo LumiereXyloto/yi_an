@@ -12,40 +12,40 @@
     </div>
 
     <div class="banner"></div>
-    <div class="show-block">
-      <div class="title">我的个人资料</div>
-      <div class="content-wrapper">
-        <div class="item-title">学校</div>
-        <input class="item-detail" type="text" :placeholder="list.school">
+    <div class="show-block1">
+      <div class="title1">我的个人资料</div>
+      <div class="content-wrapper1">
+        <div class="item-title1">学校</div>
+        <input class="item-detail1" type="text" :placeholder="list.school">
       </div>
       <hr>
-      <div class="content-wrapper">
-        <div class="item-title">学号</div>
-        <input class="item-detail" type="text" :placeholder="list.studentId">
+      <div class="content-wrapper1">
+        <div class="item-title1">学号</div>
+        <input class="item-detail1" type="text" :placeholder="list.studentId">
       </div>
       <hr>
-      <div class="content-wrapper">
-        <div class="item-title">姓名</div>
-        <input class="item-detail" type="text" :placeholder="list.studentName">
+      <div class="content-wrapper1">
+        <div class="item-title1">姓名</div>
+        <input class="item-detail1" type="text" :placeholder="list.studentName">
       </div>
       <hr>
-      <div class="content-wrapper">
-        <div class="item-title">性别</div>
-        <input class="item-detail" type="text" :placeholder="list.studentSex">
+      <div class="content-wrapper1">
+        <div class="item-title1">性别</div>
+        <input class="item-detail1" type="text" :placeholder="list.studentSex">
       </div>
       <hr>
-      <div class="content-wrapper">
-        <div class="item-title">电话</div>
-        <input class="item-detail" type="text" :placeholder="list.studentPhone">
+      <div class="content-wrapper1">
+        <div class="item-title1">电话</div>
+        <input class="item-detail1" type="text" :placeholder="list.studentPhone">
       </div>
       <hr>
-      <div class="content-wrapper">
-        <div class="item-title">联系</div>
-        <input class="item-detail" type="text" :placeholder="list.studentContactWay">
+      <div class="content-wrapper1">
+        <div class="item-title1">联系</div>
+        <input class="item-detail1" type="text" :placeholder="list.studentContactWay">
       </div>
       <hr>
     </div>
-    <div class="change-button">确定修改</div>
+    <div class="change-button1">确定修改</div>
   </div>
 </template>
 
@@ -59,14 +59,18 @@ export default {
       list: {}
     }
   },
-  activated () {
+  mounted () {
+    console.log('mounted')
+  },
+  beforeCreate () {
+    console.log('beforeCreate')
     bus.$on('userInfo', (listFrom) => {
-      // console.log(listFrom)
+      console.log('get', listFrom)
       this.list = listFrom
     })
     console.log('placeholder', this.list)
   },
-  disactivated () {
+  beforeDestroy () {
     bus.$off()
   }
 }
@@ -83,33 +87,33 @@ export default {
     height: .8rem
     line-height: .8rem
     border-radius: .4rem
-    background: rgba(0, 0, 0, .8)
+    background: rgba(0, 0, 0, .3)
     .header-abs-back
       color: #ffffff
       font-size: .4rem
   .banner
     height 2.16rem
     background-color #A6DCFD
-  .show-block
+  .show-block1
     background-color #fff
-    .title
+    .title1
       margin-top .4rem
       margin-bottom .2rem
       padding .1rem .2rem
       border-bottom 1px solid #D7D7D7
       text-align center
-    .content-wrapper
+    .content-wrapper1
       display flex
       justify-content space-between
       padding .1rem .8rem
-      .item-title
+      .item-title1
         font-size .3rem
         margin-top .2rem
-      .item-detail
+      .item-detail1
         font-size .3rem
         margin-top .2rem
         border-bottom 1px solid #cccccc
-  .change-button
+  .change-button1
     position relative
     bottom -1.5rem
     text-align center

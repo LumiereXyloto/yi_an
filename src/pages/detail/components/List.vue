@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/assets/styles/varibles.styl';
+@import '~@/assets/styles/varibles.styl'
   .item-title
     font-size .38rem
     padding .4rem .4rem

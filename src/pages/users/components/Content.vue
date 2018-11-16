@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="user-info">
-      <div class="info-item">重庆邮电大学</div>
-      <div class="info-item">李博文</div>
+      <div class="info-item">{{infoList.school}}</div>
+      <div class="info-item">{{infoList.studentName}}</div>
     </div>
     <div class="icon-img">
       <img class="img" src="@/assets/images/signup.png" alt="gg">
@@ -15,7 +15,7 @@
         <div>已经报名</div>
       </router-link>
       <router-link to="/star">
-        <div>我的收藏</div>
+        <div>我的关注</div>
       </router-link>
       <router-link to="/info">
         <div>我的消息</div>
@@ -24,48 +24,57 @@
         <div>个人资料</div>
       </router-link>
     </div>
-    <div class="show-block">
-      <div class="title">已经报名(3)</div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
+
+    <div class="block-title">已经报名({{length}})</div>
+    <div class="showBlock">
+      <ul>
+        <router-link
+          tag="li"
+          v-for="item of signList"
+          :key="item.jobId"
+          :to="'/detail/' + item.jobId"
+        >
+          <div>
+            <p class="item-title">{{item.title}}</p>
+            <p class="item-detail">{{item.jobDetail}}</p>
+            <p class="item-status">报名状态：{{item.status}}</p>
+            <p class="item-time">报名时间：{{item.signTime}}</p>
+          </div>
+        </router-link>
+      </ul>
     </div>
-    <div class="show-block">
-      <div class="title">我的收藏(2)</div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-    </div>
+
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
-  name: 'name'
+  name: 'name',
+  data () {
+    return {
+      infoList: '',
+      signList: [],
+      name: '',
+      school: '',
+      status: '',
+      length: ''
+    }
+  },
+  mounted () {
+    axios.post('http://yian.our16.top:8080/yian/student/getPersonalInfor.do')
+      .then(res => {
+        console.log(res.data.data)
+        this.infoList = res.data.data
+      })
+    axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
+      .then(res => {
+        console.log(res.data.data)
+        this.signList = res.data.data
+        this.length = res.data.data.length
+      })
+  }
 }
 </script>
 
@@ -75,9 +84,10 @@ export default {
     justify-content center
     padding-top 1.2rem
     background-color #fff
+    height .28rem
     .info-item
       margin 0 .1rem
-      font-size .2rem
+      font-size .28rem
   .icon-img
     display flex
     justify-content space-around
@@ -93,21 +103,31 @@ export default {
     padding-top .2rem
     padding-bottom .8rem
     background-color #fff
-  .show-block
-    background-color #fff
-    .title
-      margin-top .4rem
-      padding .1rem .2rem
-      border-bottom 1px solid #D7D7D7
-    .content-wrapper
-      padding .1rem .4rem
-      .item-title
-        font-size .3rem
-        padding-top .1rem
-      .item-detail
-        font-size .24rem
-        padding-top .1rem
-      .item-status
-        font-size .28rem
-        padding-top .1rem
+  .block-title
+    background-color #EEEEEE
+    font-size .28rem
+    height .8rem
+    line-height .8rem
+    margin-bottom .2rem
+    padding 0 .2rem
+  .showBlock
+    padding 0 .4rem
+    .item-title
+      font-size .34rem
+      margin-bottom .1rem
+      margin-top .2rem
+    .item-detail
+      color #919191
+      font-size .26rem
+      margin-bottom .1rem
+    .item-status
+      color #919191
+      font-size .28rem
+      margin-top .1rem
+    .item-time
+      color #919191
+      font-size .28rem
+      margin-top .1rem
+      border-bottom 1px solid #eeeeee
+      padding-bottom .1rem
 </style>

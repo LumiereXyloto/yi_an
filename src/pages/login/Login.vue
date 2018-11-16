@@ -121,7 +121,7 @@ export default {
     display flex
     justify-content center
     margin-top 1rem
-    font-size .12rem
+    font-size .2rem
     .color-text
       color #409Eff
 </style>

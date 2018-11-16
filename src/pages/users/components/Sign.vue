@@ -22,32 +22,30 @@
     </div>
 
     <div class="banner"></div>
-    <div class="show-block">
-      <div class="title">已经报名(3)</div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
-      <div class="content-wrapper">
-        <div class="item-title">15栋超市兼职</div>
-        <div class="item-detail">这是详情这是详情这是详情</div>
-        <div class="item-status">报名状态</div>
-        <hr>
-      </div>
+
+    <div class="block-title">已经报名({{length}})</div>
+    <div class="showBlock">
+      <ul>
+        <router-link
+          tag="li"
+          v-for="item of signList"
+          :key="item.jobId"
+          :to="'/detail/' + item.jobId"
+        >
+          <div>
+            <p class="item-title">{{item.title}}</p>
+            <p class="item-detail">{{item.jobDetail}}</p>
+            <p class="item-status">报名状态：{{item.status}}</p>
+            <p class="item-time">报名时间：{{item.signTime}}</p>
+          </div>
+        </router-link>
+      </ul>
     </div>
-    <div class="content"></div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'DetailHeader',
   data () {
@@ -55,7 +53,9 @@ export default {
       showAbs: true,
       opacityStyle: {
         opacity: 0
-      }
+      },
+      signList: [],
+      length: ''
     }
   },
   methods: {
@@ -78,6 +78,14 @@ export default {
   },
   deactivated () {
     window.removeEventListener('scroll', this.handleScroll)
+  },
+  mounted () {
+    axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
+      .then(res => {
+        console.log(res.data.data)
+        this.signList = res.data.data
+        this.length = res.data.data.length
+      })
   }
 }
 </script>
@@ -121,23 +129,31 @@ export default {
   .banner
     height 2.16rem
     background-color #A6DCFD
-  .show-block
-    background-color #fff
-    .title
-      margin-top .4rem
-      padding .1rem .2rem
-      border-bottom 1px solid #D7D7D7
-    .content-wrapper
-      padding .1rem .4rem
-      .item-title
-        font-size .3rem
-        padding-top .1rem
-      .item-detail
-        font-size .24rem
-        padding-top .1rem
-      .item-status
-        font-size .28rem
-        padding-top .1rem
-  .content
-    height 2000px
+  .block-title
+    background-color #EEEEEE
+    font-size .28rem
+    height .8rem
+    line-height .8rem
+    margin-bottom .2rem
+    padding 0 .2rem
+  .showBlock
+    padding 0 .4rem
+    .item-title
+      font-size .34rem
+      margin-bottom .1rem
+      margin-top .2rem
+    .item-detail
+      color #919191
+      font-size .26rem
+      margin-bottom .1rem
+    .item-status
+      color #919191
+      font-size .28rem
+      margin-top .1rem
+    .item-time
+      color #919191
+      font-size .28rem
+      margin-top .1rem
+      border-bottom 1px solid #eeeeee
+      padding-bottom .1rem
 </style>

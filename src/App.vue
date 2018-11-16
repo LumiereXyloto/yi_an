@@ -21,7 +21,15 @@ export default {
   // 监听路由的路径，可以通过不同的路径去选择不同的切换效果
   watch: {
     '$route' (to, from) {
-      if (to.path === '/' && from.path === '/logon') {
+      if (to.path === '/user' && from.path === '/sign') {
+        this.transitionName = 'slide-right'
+      } else if (to.path === '/user' && from.path === '/star') {
+        this.transitionName = 'slide-right'
+      } else if (to.path === '/user' && from.path === '/info') {
+        this.transitionName = 'slide-right'
+      } else if (to.path === '/user' && from.path === '/person') {
+        this.transitionName = 'slide-right'
+      } else if (to.path === '/' && from.path === '/logon') {
         this.transitionName = 'slide-left'
       } else if (to.path === '/') {
         this.transitionName = 'slide-right'
