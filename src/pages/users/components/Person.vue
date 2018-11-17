@@ -47,8 +47,14 @@
         </div>
         <hr>
       </div>
-      <div class="photo-button" @click="photo">上传证件</div>
+      <div class="photo-button">
+        <span class="upload-text">上传证件</span>
+        <input style="opacity:0" type="file" ref="file" name="file" accept="image/png,image/jpg,image/jpeg" @change="upload()">
+      </div>
       <div class="change-button" @click="showBlock=!showBlock">修改个人资料</div>
+      <router-link to="/change">
+        <div class="change-button">修改账户密码</div>
+      </router-link>
     </div>
 
     <div v-show="!showBlock">
@@ -169,16 +175,21 @@ export default {
           this.$layer.msg(res.data.msg)
         })
     },
-    photo () {
-      this.$layer.closeAll()
-      this.$layer.open({
-        content: '是否上传照片?',
-        btn: ['图库上传', '取消'],
-        skin: 'footer',
-        yes: (index) => {
-          this.$layer.open({content: '执行删除操作'})
-        }
-      })
+    upload () {
+      console.log('confirm upload')
+      let file = this.$refs.file.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = function (e) {
+        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', qs.stringify({
+          photo: e.target.result
+        }), {
+          headers: {'Content-Type': 'multipart/form-data'}
+        })
+          .then(res => {
+            console.log(res)
+          })
+      }
     }
   },
   mounted () {
@@ -232,20 +243,24 @@ export default {
         margin-top .2rem
   .photo-button
     position relative
-    bottom -1rem
     text-align center
     margin 0 1.5rem
+    margin-top 1.2rem
     height .6rem
     line-height .6rem
     background-color #F9F9F9
     color #007CF9
     border-radius .14rem
     border 1px solid #E4E4E4
+    .upload-text
+      position absolute
+      top 0
+      left 0
+      right 0
   .change-button
-    position relative
-    bottom -1.5rem
     text-align center
     margin 0 1.5rem
+    margin-top .4rem
     height .6rem
     line-height .6rem
     background-color $bgColor
@@ -271,10 +286,9 @@ export default {
         margin-top .2rem
         border-bottom 1px solid #cccccc
   .change-button1
-    position relative
-    bottom -1.5rem
     text-align center
     margin 0 1.5rem
+    margin-top 1.6rem
     height .6rem
     line-height .6rem
     background-color #FF5B5B

@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="header-fixed">
-      <router-link to="/">
-        <div class="iconfont header-fixed-back">&#xe624;</div>
-      </router-link>
+      <div class="iconfont header-fixed-back" @click="back()">&#xe624;</div>
       兼职详情
     </div>
   </div>
@@ -11,7 +9,12 @@
 
 <script>
 export default {
-  name: 'DetailHeader'
+  name: 'DetailHeader',
+  methods: {
+    back () {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 

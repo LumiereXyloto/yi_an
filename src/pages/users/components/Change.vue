@@ -1,5 +1,5 @@
 <template>
-  <div class="bgi">
+  <div>
     <div>
       <router-link
         tag="div"
@@ -13,65 +13,56 @@
 
     <div class="banner"></div>
     <div class="show-block1">
-      <div class="title1">我的个人资料</div>
+      <div class="title1">修改密码</div>
       <div class="content-wrapper1">
-        <div class="item-title1">学校</div>
-        <input class="item-detail1" type="text" :placeholder="list.school">
+        <div class="item-title1">原密码</div>
+        <input class="item-detail1" type="password" v-model="oldPsw">
       </div>
       <hr>
       <div class="content-wrapper1">
-        <div class="item-title1">学号</div>
-        <input class="item-detail1" type="text" :placeholder="list.studentId">
-      </div>
-      <hr>
-      <div class="content-wrapper1">
-        <div class="item-title1">姓名</div>
-        <input class="item-detail1" type="text" :placeholder="list.studentName">
-      </div>
-      <hr>
-      <div class="content-wrapper1">
-        <div class="item-title1">性别</div>
-        <input class="item-detail1" type="text" :placeholder="list.studentSex">
-      </div>
-      <hr>
-      <div class="content-wrapper1">
-        <div class="item-title1">电话</div>
-        <input class="item-detail1" type="text" :placeholder="list.studentPhone">
-      </div>
-      <hr>
-      <div class="content-wrapper1">
-        <div class="item-title1">联系</div>
-        <input class="item-detail1" type="text" :placeholder="list.studentContactWay">
+        <div class="item-title1">新密码</div>
+        <input class="item-detail1" type="password" v-model="newPsw">
       </div>
       <hr>
     </div>
-    <div class="change-button1">确定修改</div>
+    <div class="change-button1" @click="changePsw()">确定修改</div>
   </div>
 </template>
 
 <script>
-import bus from '@/assets/eventBus.js'
+import qs from 'qs'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
-  name: 'DetailHeader',
+  name: 'Change',
   data () {
     return {
       showAbs: true,
-      list: {}
+      list: {},
+      oldPsw: '',
+      newPsw: ''
     }
   },
-  mounted () {
-    console.log('mounted')
-  },
-  beforeCreate () {
-    console.log('beforeCreate')
-    bus.$on('userInfo', (listFrom) => {
-      console.log('get', listFrom)
-      this.list = listFrom
-    })
-    console.log('placeholder', this.list)
-  },
-  beforeDestroy () {
-    bus.$off()
+  methods: {
+    changePsw () {
+      if (this.oldPsw === '' || this.newPsw === '') {
+        this.$layer.closeAll()
+        this.$layer.msg('请检查你的输入')
+      } else {
+        axios.post('http://yian.our16.top:8080/yian/account/changePsw.do', qs.stringify({
+          oldPsw: this.oldPsw,
+          newPsw: this.newPsw
+        }))
+          .then(res => {
+            console.log(res)
+            this.$layer.closeAll()
+            this.oldPsw = ''
+            this.newPsw = ''
+            this.$layer.msg(res.data.msg)
+            this.$router.go(-1)
+          })
+      }
+    }
   }
 }
 </script>
@@ -114,10 +105,9 @@ export default {
         margin-top .2rem
         border-bottom 1px solid #cccccc
   .change-button1
-    position relative
-    bottom -1.5rem
     text-align center
     margin 0 1.5rem
+    margin-top 2rem
     height .6rem
     line-height .6rem
     background-color #FF5B5B

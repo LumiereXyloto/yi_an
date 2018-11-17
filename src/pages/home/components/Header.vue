@@ -16,12 +16,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
-  name: 'HomeHeader',
-  computed: {
-    ...mapState(['city'])
-  }
+  name: 'HomeHeader'
 }
 </script>
 <style lang="stylus" scoped>

@@ -39,6 +39,9 @@ export default {
       }
     })
   },
+  beforeDestroy () {
+    bus.$off()
+  },
   methods: {
     checkSignUp () {
       if (this.params.isSign === '0') {

@@ -20,8 +20,14 @@
         我的收藏
       </div>
     </div>
-
     <div class="banner"></div>
+    <div class="job-type">
+      <div v-for="(item, index) in typeList" :key="index">
+        <div>{{item.typeName}}</div>
+      </div>
+    </div>
+    <div class="reward-type"></div>
+
     <div class="show-block">
       <div class="title">我的收藏(3)</div>
       <div class="content-wrapper">
@@ -45,6 +51,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
   name: 'DetailHeader',
   data () {
@@ -52,7 +60,8 @@ export default {
       showAbs: true,
       opacityStyle: {
         opacity: 0
-      }
+      },
+      typeList: []
     }
   },
   methods: {
@@ -75,6 +84,15 @@ export default {
   },
   deactivated () {
     window.removeEventListener('scroll', this.handleScroll)
+  },
+  mounted () {
+    axios.post('http://yian.our16.top:8080/yian/jobTypeList/getParttimeType.do')
+      .then(res => {
+        let arr = res.data.data
+        let filterList = arr.slice(1)
+        this.typeList = filterList
+        console.log(this.typeList)
+      })
   }
 }
 </script>

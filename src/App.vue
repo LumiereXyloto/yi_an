@@ -29,8 +29,14 @@ export default {
         this.transitionName = 'slide-right'
       } else if (to.path === '/user' && from.path === '/person') {
         this.transitionName = 'slide-right'
-      } else if (to.path === '/' && from.path === '/logon') {
+      } else if (to.path === '/' && from.path === '/login') {
         this.transitionName = 'slide-left'
+      } else if (to.path === '/user' && from.path === '/') {
+        this.transitionName = 'slide-left'
+      } else if (to.path === '/person' && from.path === '/change') {
+        this.transitionName = 'slide-right'
+      } else if (to.path === '/user') {
+        this.transitionName = 'slide-right'
       } else if (to.path === '/') {
         this.transitionName = 'slide-right'
       } else {
