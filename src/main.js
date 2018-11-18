@@ -10,7 +10,6 @@ import './assets/styles/reset.css'
 import './assets/styles/border.css'
 import './assets/styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
-import ele from 'element-ui'
 import 'vue-layer-mobile/need/layer.css'
 import layer from 'vue2-layer-mobile'
 
@@ -18,7 +17,6 @@ Vue.use(layer)
 Vue.config.productionTip = false
 fasClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
-Vue.use(ele)
 
 /* eslint-disable no-new */
 new Vue({
