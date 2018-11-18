@@ -176,18 +176,26 @@ export default {
         })
     },
     upload () {
+      let _this = this
       console.log('confirm upload')
       let file = this.$refs.file.files[0]
       let reader = new FileReader()
       reader.readAsDataURL(file)
+      let formData = new FormData()
+      formData.append('photo', file)
       reader.onload = function (e) {
-        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', qs.stringify({
-          photo: e.target.result
-        }), {
+        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
           .then(res => {
             console.log(res)
+            if (res.data.status === 1) {
+              _this.$layer.closeAll()
+              _this.$layer.msg('上传成功')
+            } else {
+              _this.$layer.closeAll()
+              _this.$layer.msg('似乎出现了问题')
+            }
           })
       }
     }
