@@ -26,39 +26,66 @@ export default new Router({
   }, {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/detail/:jobId',
     name: 'Detail',
-    component: Detail
+    component: Detail,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/user',
     name: 'User',
-    component: User
+    component: User,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/sign',
     name: 'Sign',
-    component: Sign
+    component: Sign,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/star',
     name: 'Star',
-    component: Star
+    component: Star,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/info',
     name: 'Info',
-    component: Info
+    component: Info,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/person',
     name: 'Person',
-    component: Person
+    component: Person,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/change',
     name: 'Change',
-    component: Change
+    component: Change,
+    meta: {
+      requireLogin: true
+    }
   }, {
     path: '/merchant',
     name: 'Merchant',
-    component: Merchant
+    component: Merchant,
+    meta: {
+      requireLogin: true
+    }
   }],
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
