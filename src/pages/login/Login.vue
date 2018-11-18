@@ -63,6 +63,7 @@ export default {
       }
     },
     sendInfoSucc (res) {
+      sessionStorage.setItem('uid', this.uid)
       if (res.data.msg === '2') {
         this.$layer.closeAll()
         this.$layer.msg('登录成功')
