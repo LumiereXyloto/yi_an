@@ -47,28 +47,35 @@ export default {
     sendInfo () {
       console.log(this.list.uid)
       console.log(this.list.psw)
-      axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
-        uid: this.list.uid,
-        psw: this.list.psw
-      }))
-        .then(this.sendInfoSucc)
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      if (this.list.uid === '' || this.list.psw === '') {
+        this.$layer.closeAll()
+        this.$layer.msg('账号/密码不能为空')
+      } else if (email.test(this.list.uid)) {
+        axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
+          uid: this.list.uid,
+          psw: this.list.psw
+        }))
+          .then(this.sendInfoSucc)
+      } else {
+        this.$layer.closeAll()
+        this.$layer.msg('账号有误')
+      }
     },
     sendInfoSucc (res) {
-      const error = res.data.msg
       if (res.data.msg === '2') {
-        this.$layer.msg('登录成功', () => {
-          console.log(res.data.msg)// 两秒后执行
-        })
-        this.$router.replace('/')
+        this.$layer.closeAll()
+        this.$layer.msg('登录成功')
+        console.log(res.data.msg, '商家')
+        this.$router.replace('/merchant')
       } else if (res.data.msg === '1') {
-        this.$layer.msg('登录成功', () => {
-          console.log(res.data.msg)
-        })
+        this.$layer.closeAll()
+        this.$layer.msg('登录成功')
+        console.log(res.data.msg, '学生')
         this.$router.replace('/')
       } else {
-        this.$layer.msg('登录失败', () => {
-          console.log(error)
-        })
+        this.$layer.closeAll()
+        this.$layer.msg('登录失败')
       }
     }
   }
