@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <span>商家中心</span>
-      <span class="publish" @click="a">发布</span>
+      <span class="publish" @click="publish">发布</span>
       <span class="exist">注销</span>
     </div>
     <div class="color-block"></div>
@@ -15,9 +15,14 @@
 <script>
 export default {
   name: 'CityHeader',
+  data () {
+    return {
+      showLayer: true
+    }
+  },
   methods: {
-    a () {
-      alert('aaaaa')
+    publish () {
+      this.$router.replace('/publish')
     }
   }
 }

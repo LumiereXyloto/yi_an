@@ -105,12 +105,12 @@ export default {
       },
       showBlock: true,
       list: {
-        school: '重庆邮电大学',
-        stuentId: '740207968@qq.com',
-        studentName: '李博文',
-        studentSex: '男',
-        studentPhone: '18723287690',
-        studentContactWay: 'Reaper622'
+        school: '',
+        stuentId: '',
+        studentName: '',
+        studentSex: '',
+        studentPhone: '',
+        studentContactWay: ''
       },
       changeList: {
         school: '',
@@ -253,7 +253,7 @@ export default {
     position relative
     text-align center
     margin 0 1.5rem
-    margin-top 1.2rem
+    margin-top .7rem
     height .6rem
     line-height .6rem
     background-color #F9F9F9
@@ -268,7 +268,7 @@ export default {
   .change-button
     text-align center
     margin 0 1.5rem
-    margin-top .4rem
+    margin-top .3rem
     height .6rem
     line-height .6rem
     background-color $bgColor
@@ -277,7 +277,7 @@ export default {
   .show-block1
     background-color #fff
     .title1
-      margin-top .4rem
+      margin-top .3rem
       margin-bottom .2rem
       padding .1rem .2rem
       border-bottom 1px solid #D7D7D7

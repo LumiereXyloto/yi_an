@@ -8,11 +8,11 @@
     </div>
     <div class="input-wrapper">
       <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号" @blur="checkEmail">
-      <input class="input" type="password" placeholder="请设置密码(6-16位)">
-      <input class="input" v-model="list.psw" type="password" placeholder="请确认密码">
+      <input class="input" v-model="list.ps" type="password" placeholder="请设置密码(6-16位)" @blur="checkPs">
+      <input class="input" v-model="list.psw" type="password" placeholder="请确认密码" @blur="checkPsw">
       <div class="code-wrapper">
         <input class="input code-input" v-model="list.authCode" type="text" placeholder="请输入验证码">
-        <span class="code" @click="sendCode">点击获取验证码</span>
+        <span class="code" @click="sendCode" ref="text">点击获取验证码</span>
       </div>
       <div class="radio-wrapper">
         <label>
@@ -48,6 +48,7 @@ export default {
     return {
       list: [{
         uid: '',
+        ps: '',
         psw: '',
         authCode: '',
         userType: ''
@@ -56,37 +57,96 @@ export default {
   },
   methods: {
     sendInfo () {
-      console.log(this.list)
-      axios.post('http://yian.our16.top:8080/yian/account/register.do', qs.stringify({
-        uid: this.list.uid,
-        psw: this.list.psw,
-        authCode: this.list.authCode,
-        userType: this.list.userType
-      }), {
-        withCredentials: true
-      })
-        .then(this.sendInfoSucc)
+      if (this.list.uid && this.list.ps && this.list.psw && this.list.authCode && this.list.userType) {
+        console.log(this.list)
+        axios.post('http://yian.our16.top:8080/yian/account/register.do', qs.stringify({
+          uid: this.list.uid,
+          psw: this.list.psw,
+          authCode: this.list.authCode,
+          userType: this.list.userType
+        }), {
+          withCredentials: true
+        })
+          .then(this.sendInfoSucc)
+      } else {
+        this.$layer.closeAll()
+        this.$layer.msg('输入框不能为空')
+      }
     },
     sendInfoSucc (res) {
       console.log(res.data.msg)
+      this.$layer.closeAll()
+      this.$layer.msg(res.data.msg)
+    },
+    time () {
+      let _this = this
+      let wait = 60
+      if (wait === 0) {
+        this.$refs.text.innerText = '点击获取验证码'
+        wait = 60
+      } else {
+        let s = setInterval(function () {
+          _this.$refs.text.innerText = wait + '秒后再次获取'
+          wait--
+          if (wait === 0) {
+            _this.$refs.text.innerText = '点击获取验证码'
+            clearInterval(s)
+          }
+        }, 1000)
+      }
     },
     sendCode () {
-      console.log(this.list.uid)
-      axios.post('http://yian.our16.top:8080/yian/account/verificationEmail.do', qs.stringify({
-        uid: this.list.uid,
-        action: '0'
-      }))
-        .then((res) => {
-          console.log(res.data.msg)
-        })
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      if (email.test(this.list.uid)) {
+        console.log(this.list.uid)
+        this.time()
+        axios.post('http://yian.our16.top:8080/yian/account/verificationEmail.do', qs.stringify({
+          uid: this.list.uid,
+          action: '0'
+        }))
+          .then((res) => {
+            if (res.data.status === 1) {
+              this.$layer.closeAll()
+              this.$layer.msg(res.data.msg)
+            }
+          })
+      } else {
+        this.$layer.closeAll()
+        this.$layer.msg('账号不符标准')
+        return false
+      }
     },
     checkEmail () {
-      axios.post('http://yian.our16.top:8080/yian/account/checkAccountIsExist.do', qs.stringify({
-        uid: this.list.uid
-      }))
-        .then((res) => {
-          this.$layer.msg(res.data.msg)
-        })
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      if (email.test(this.list.uid)) {
+        axios.post('http://yian.our16.top:8080/yian/account/checkAccountIsExist.do', qs.stringify({
+          uid: this.list.uid
+        }))
+          .then((res) => {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+          })
+      } else {
+        this.$layer.closeAll()
+        this.$layer.msg('账号不符合规则')
+        return false
+      }
+    },
+    checkPs () {
+      if (this.list.ps) {
+        if (this.list.ps.length < 6 || this.list.ps.length > 16) {
+          this.$layer.closeAll()
+          this.$layer.msg('密码不符合规则')
+          return false
+        }
+      }
+    },
+    checkPsw () {
+      if (this.list.ps !== '' && this.list.psw != '' && this.list.psw !== this.list.ps) {
+        this.$layer.closeAll()
+        this.$layer.msg('两次密码输入不一致')
+        return false
+      }
     }
   }
 }
@@ -125,7 +185,7 @@ export default {
       border-bottom: .02rem solid #CECECE
       padding: .2rem
       margin: .4rem
-      margin-top: .2rem
+      margin-top: .15rem
     .code-wrapper
       display flex
       .code
@@ -154,8 +214,8 @@ export default {
   .footer-info
     display flex
     justify-content center
-    margin-top 1rem
-    font-size .12rem
+    margin-top .5rem
+    font-size .2rem
     .color-text
       color #409Eff
     .underline-text

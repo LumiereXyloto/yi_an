@@ -34,6 +34,7 @@ export default {
     background: #ffffff
     font-size: .32rem
     border-bottom 1px solid #E9E9E9
+    border-top 1px solid #E9E9E9
     .header-fixed-back
       width: .64rem
       text-align: center

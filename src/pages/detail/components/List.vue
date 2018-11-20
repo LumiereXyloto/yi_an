@@ -81,6 +81,17 @@ export default {
   },
   mounted () {
     this.sendRequest()
+  },
+  created () {
+    bus.$on('addNum', (n) => {
+      this.list.nowNum += n
+    })
+    bus.$on('delNum', (n) => {
+      this.list.nowNum -= n
+    })
+  },
+  beforeDestroy () {
+    bus.$off()
   }
 }
 </script>
@@ -123,5 +134,5 @@ export default {
   .warn
     padding .1rem .4rem .3rem .4rem
     color #FF4040
-    margin-bottom .86rem
+    margin-bottom 1rem
 </style>

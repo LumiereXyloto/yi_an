@@ -82,9 +82,13 @@ export default {
   mounted () {
     axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
       .then(res => {
-        console.log(res.data.data)
-        this.signList = res.data.data
-        this.length = res.data.data.length
+        if (res.data.data) {
+          console.log(res.data.data)
+          this.signList = res.data.data
+          this.length = res.data.data.length
+        } else {
+          this.length = 0
+        }
       })
   }
 }

@@ -79,9 +79,15 @@ export default {
                 _this.isSignText = '已报名'
                 _this.$layer.closeAll()
                 _this.$layer.msg('报名成功')
+                bus.$emit('addNum', 1)
               } else {
-                console.log('报名出现error')
+                _this.$layer.closeAll()
+                _this.$layer.msg('报名出现error')
               }
+            })
+            .catch(() => {
+              _this.$layer.closeAll()
+              _this.$layer.msg('报名出现error')
             })
         },
         no (index, $layer) {
@@ -127,6 +133,7 @@ export default {
                 _this.isSignText = '立即报名'
                 _this.$layer.closeAll()
                 _this.$layer.msg('取消成功')
+                bus.$emit('delNum', 1)
               } else {
                 console.log('取消报名出现error')
               }

@@ -9,7 +9,7 @@
     </div>
     <div class="color-block"></div>
     <div class="img-block">
-      <img class="img" src="@/assets/images/logo.png" alt="gg">
+      <img class="img" :src="logoUrl" alt="gg">
     </div>
   </div>
 </template>
@@ -18,6 +18,11 @@
 import axios from 'axios'
 export default {
   name: 'CityHeader',
+  data () {
+    return {
+      logoUrl: './static/images/logo.png'
+    }
+  },
   methods: {
     signOut () {
       let _this = this

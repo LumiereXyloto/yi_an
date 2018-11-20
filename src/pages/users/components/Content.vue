@@ -5,10 +5,14 @@
       <div class="info-item">{{infoList.studentName}}</div>
     </div>
     <div class="icon-img">
-      <img class="img" src="@/assets/images/signup.png" alt="gg">
+      <router-link class="img" tag="img" :src="imgs.signUrl" to="/sign"></router-link>
+      <router-link class="img" tag="img" :src="imgs.starUrl" to="/star"></router-link>
+      <router-link class="img" tag="img" :src="imgs.infoUrl" to="/info"></router-link>
+      <router-link class="img" tag="img" :src="imgs.userUrl" to="/person"></router-link>
+      <!-- <img class="img" src="@/assets/images/signup.png" alt="gg">
       <img class="img" src="@/assets/images/star.png" alt="gg">
       <img class="img" src="@/assets/images/info.png" alt="gg">
-      <img class="img" src="@/assets/images/user.png" alt="gg">
+      <img class="img" src="@/assets/images/user.png" alt="gg"> -->
     </div>
     <div class="icon-text">
       <router-link to="/sign">
@@ -54,12 +58,21 @@ export default {
   name: 'name',
   data () {
     return {
-      infoList: '',
+      infoList: {
+        school: '',
+        studentName: ''
+      },
       signList: [],
       name: '',
       school: '',
       status: '',
-      length: ''
+      length: '',
+      imgs: {
+        signUrl: './static/images/signup.png',
+        starUrl: './static/images/star.png',
+        infoUrl: './static/images/info.png',
+        userUrl: './static/images/user.png'
+      }
     }
   },
   mounted () {
@@ -70,9 +83,13 @@ export default {
       })
     axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
       .then(res => {
-        console.log(res.data.data)
-        this.signList = res.data.data
-        this.length = res.data.data.length
+        if (res.data.data) {
+          console.log(res.data.data)
+          this.signList = res.data.data
+          this.length = res.data.data.length
+        } else {
+          this.length = 0
+        }
       })
   }
 }
