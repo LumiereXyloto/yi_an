@@ -81,7 +81,7 @@ export default {
       ],
       callback: function (indexArr, data) {
         console.log(data)
-        _this.list.rewardType = data[0]
+        _this.list.rewardType = indexArr[0]
       }
     })
     var mobileSelect5 = new MobileSelect({
@@ -104,7 +104,7 @@ export default {
     //   if (this.list.summary && this.list.jobTime)
     // },
     push () {
-      console.log(this.list)
+      let _this = this
       axios.post('http://yian.our16.top:8080/yian/merchant/pushJobInfo.do', qs.stringify({
         summary: this.list.summary,
         jobTime: this.list.jobTime,
@@ -112,12 +112,16 @@ export default {
         rewardType: this.list.rewardType,
         address: this.list.address,
         details: this.list.details,
-        type: this.list.type,
+        jobType: this.list.type,
         hireNum: this.list.hireNum,
         school: '10617'
       }))
         .then(res => {
-          console.log(res)
+          if (res.data.status === 1) {
+            _this.$layer.closeAll()
+            _this.$layer.msg(res.data.msg)
+            _this.$router.replace('/merchant')
+          }
         })
     }
   }

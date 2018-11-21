@@ -13,6 +13,7 @@ import Change from '@/pages/users/components/Change'
 import Merchant from '@/pages/merchant/Merchant'
 import Publish from '@/pages/merchant/components/Publish'
 import MerchantInfo from '@/pages/merchant/components/Info'
+import MDetail from '@/pages/merchant/components/MDetail'
 
 Vue.use(Router)
 
@@ -36,6 +37,13 @@ export default new Router({
     path: '/detail/:jobId',
     name: 'Detail',
     component: Detail,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/mdetail/:jobId',
+    name: 'MDetail',
+    component: MDetail,
     meta: {
       requireLogin: true
     }
