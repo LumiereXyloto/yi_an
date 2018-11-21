@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>我的发布</div>
+    <div class="title">我的发布</div>
   </div>
 </template>
 
@@ -11,5 +11,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+  .title
+    background: #eeeeee
+    line-height: .8rem
+    text-indent: .4rem
 </style>

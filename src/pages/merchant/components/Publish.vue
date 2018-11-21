@@ -92,7 +92,7 @@ export default {
       ],
       callback: function (indexArr, data) {
         console.log(indexArr, data)
-        _this.list.type = indexArr[0]
+        _this.list.type = data[0]
       }
     })
   },
@@ -105,6 +105,20 @@ export default {
     // },
     push () {
       console.log(this.list)
+      axios.post('http://yian.our16.top:8080/yian/merchant/pushJobInfo.do', qs.stringify({
+        summary: this.list.summary,
+        jobTime: this.list.jobTime,
+        reward: this.list.reward,
+        rewardType: this.list.rewardType,
+        address: this.list.address,
+        details: this.list.details,
+        type: this.list.type,
+        hireNum: this.list.hireNum,
+        school: '10617'
+      }))
+        .then(res => {
+          console.log(res)
+        })
     }
   }
 }

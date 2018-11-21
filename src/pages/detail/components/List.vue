@@ -75,7 +75,6 @@ export default {
         })
     },
     sendRequestSucc (res) {
-      console.log(res)
       this.list = res.data.data
     }
   },

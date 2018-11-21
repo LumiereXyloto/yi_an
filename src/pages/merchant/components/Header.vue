@@ -3,18 +3,14 @@
     <div class="header">
       <span>商家中心</span>
       <span class="publish" @click="publish">发布</span>
-      <span class="exist">注销</span>
-    </div>
-    <div class="color-block"></div>
-    <div class="img-block">
-      <img class="img" src="@/assets/images/logo.png" alt="gg">
+      <span class="merchant-info" @click="gotoInfo">个人</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CityHeader',
+  name: 'MerchantHeader',
   data () {
     return {
       showLayer: true
@@ -23,6 +19,9 @@ export default {
   methods: {
     publish () {
       this.$router.replace('/publish')
+    },
+    gotoInfo () {
+      this.$router.replace('/merchant/info')
     }
   }
 }
@@ -40,29 +39,13 @@ export default {
     background: -webkit-linear-gradient(
     left,$bgColor,#1C8DFF,#0B85FF,#007BF7
     )
-    font-size: .32rem
+    font-size: .36rem
     .publish
       position absolute
       left 0.2rem
-      font-size .26rem
-    .exist
+      font-size .3rem
+    .merchant-info
       position absolute
       right 0.2rem
-      font-size .26rem
-  .color-block
-    width 100%
-    height 1.3rem
-    background: -webkit-linear-gradient(
-    left,$bgColor,#1C8DFF,#0B85FF,#007BF7
-    )
-  .img-block
-    display flex
-    justify-content center
-    .img
-      background-color #ffffff
-      border-radius .9rem
-      width 1.8rem
-      height 1.8rem
-      position absolute
-      top 1.26rem
+      font-size .3rem
 </style>

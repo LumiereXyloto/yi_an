@@ -10,8 +10,9 @@ import Star from '@/pages/users/components/Star'
 import Info from '@/pages/users/components/Info'
 import Person from '@/pages/users/components/Person'
 import Change from '@/pages/users/components/Change'
-import Merchant from '@/pages/merchant/merchant'
+import Merchant from '@/pages/merchant/Merchant'
 import Publish from '@/pages/merchant/components/Publish'
+import MerchantInfo from '@/pages/merchant/components/Info'
 
 Vue.use(Router)
 
@@ -91,6 +92,13 @@ export default new Router({
     path: '/publish',
     name: 'Publish',
     component: Publish,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/merchant/info',
+    name: 'MerchantInfo',
+    component: MerchantInfo,
     meta: {
       requireLogin: true
     }

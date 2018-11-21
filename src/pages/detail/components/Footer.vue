@@ -58,9 +58,6 @@ export default {
         className: 'good luck1',
         shade: true,
         shadeClose: false,
-        success (layer) {
-          console.log('layer id is:', layer.id)
-        },
         yes (index, $layer) {
           console.log('点击确定')
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
@@ -73,12 +70,11 @@ export default {
             withCredentials: true
           })
             .then((res) => {
-              console.log('报名是否成功', res.data.status)
               if (res.data.status === 1) {
                 _this.params.isSign = '1'
                 _this.isSignText = '已报名'
                 _this.$layer.closeAll()
-                _this.$layer.msg('报名成功')
+                _this.$layer.msg(res.data.msg)
                 bus.$emit('addNum', 1)
               } else {
                 _this.$layer.closeAll()
@@ -127,12 +123,11 @@ export default {
             withCredentials: true
           })
             .then((res) => {
-              console.log('取消是否成功', res.data.status)
               if (res.data.status === 1) {
                 _this.params.isSign = '0'
                 _this.isSignText = '立即报名'
                 _this.$layer.closeAll()
-                _this.$layer.msg('取消成功')
+                _this.$layer.msg(res.data.msg)
                 bus.$emit('delNum', 1)
               } else {
                 console.log('取消报名出现error')
