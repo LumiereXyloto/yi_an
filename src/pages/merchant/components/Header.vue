@@ -30,8 +30,10 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl';
   .header
-    position: relative
-    overflow: hidden
+    position: fixed
+    top 0
+    z-index 99
+    width 100%
     height: $headerHeight
     line-height: $headerHeight
     text-align: center

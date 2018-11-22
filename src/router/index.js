@@ -14,6 +14,9 @@ import Merchant from '@/pages/merchant/Merchant'
 import Publish from '@/pages/merchant/components/Publish'
 import MerchantInfo from '@/pages/merchant/components/Info'
 import MDetail from '@/pages/merchant/components/MDetail'
+import ChangeInfo from '@/pages/merchant/components/ChangeInfo'
+import ChangePsw from '@/pages/merchant/components/ChangePsw'
+import GetList from '@/pages/merchant/components/GetList'
 
 Vue.use(Router)
 
@@ -107,6 +110,27 @@ export default new Router({
     path: '/merchant/info',
     name: 'MerchantInfo',
     component: MerchantInfo,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/merchant/changeinfo',
+    name: 'changeInfo',
+    component: ChangeInfo,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/merchant/changepsw',
+    name: 'changePsw',
+    component: ChangePsw,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/merchant/getlist',
+    name: 'GetList',
+    component: GetList,
     meta: {
       requireLogin: true
     }

@@ -5,6 +5,7 @@
         <div class="iconfont header-fixed-back">&#xe624;</div>
       </router-link>
       兼职详情
+      <span class="list" @click="getList()">名单</span>
     </div>
     <div class="item">
       <div class="item-title">{{list.jobSummary}}</div>
@@ -36,18 +37,29 @@
         <span class="black">{{status}}</span>
       </div>
     </div>
+    <div class="null-block"></div>
+    <div class="fixed-wrapper">
+      <div class="button-wrapper">
+        <div class="stop-button" @click="stopItem()">{{stopText}}</div>
+        <div class="delete-button" @click="deleteItem()">{{deleteText}}</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import qs from 'qs'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 export default {
   name: 'DetailList',
   data () {
     return {
       list: {},
-      status: ''
+      status: '',
+      jobId: '',
+      stopText: '停止招聘',
+      deleteText: '删除招聘'
     }
   },
   methods: {
@@ -64,7 +76,7 @@ export default {
         })
     },
     transformStatus () {
-      if (this.list.ststus === 0) {
+      if (this.list.status === 0) {
         this.status = '待审核'
       } else if (this.list.status === 1) {
         this.status = '正在展示(学生可见)'
@@ -74,7 +86,56 @@ export default {
         this.status = '满员'
       } else if (this.list.status === 4) {
         this.status = '已停止招聘'
+        this.stopText = '已停止'
       }
+    },
+    stopItem () {
+      let _this = this
+      if (this.list.status !== 4) {
+        const index = this.$layer.confirm('您确定要停止招聘吗？', () => {
+          this.$layer.closeAll()
+          axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
+            jobId: this.$route.params.jobId,
+            action: 2
+          }))
+            .then(res => {
+              if (res.data.status === 1) {
+                _this.stopText = '已停止'
+                _this.status = '已停止招聘'
+              }
+            })
+        }, () => {
+          this.$layer.closeAll()
+        })
+      }
+    },
+    deleteItem () {
+      let _this = this
+      const index = this.$layer.confirm('您确定要删除该招聘吗？', () => {
+        this.$layer.closeAll()
+        axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
+          jobId: this.$route.params.jobId,
+          action: 1
+        }))
+          .then(res => {
+            if (res.data.status === 1) {
+              _this.$layer.closeAll()
+              _this.$layer.msg('删除成功')
+              _this.$router.replace('/merchant')
+            }
+          })
+      }, () => {
+        this.$layer.closeAll()
+      })
+    },
+    getList () {
+      this.$router.push({
+        path: '/merchant',
+        name: 'GetList',
+        params: {
+          jobId: this.$route.params.jobId
+        }
+      })
     }
   },
   mounted () {
@@ -109,6 +170,13 @@ export default {
       left: 0
       color: $bgColor
       font-weight 600
+    .list
+      font-size: .32rem
+      position: absolute
+      top: 0
+      right: .2rem
+      color: $bgColor
+      font-weight 400
   .item-title
     font-size .38rem
     padding .4rem .4rem
@@ -143,4 +211,29 @@ export default {
     padding 0 .4rem .3rem .4rem
     font-size .24rem
     font-weight bold
+  .null-block
+    height .86rem
+  .fixed-wrapper
+    position fixed
+    bottom 0
+    width 100%
+    .button-wrapper
+      display flex
+      height .86rem
+      line-height .86rem
+      .stop-button
+        width 50%
+        flex-grow 1
+        text-align center
+        color $bgColor
+        border-top 1px solid #E8E8E8
+        border-bottom 1px solid #E8E8E8
+      .delete-button
+        width 50%
+        flex-grow 1
+        text-align center
+        color #ffffff
+        background-color $bgColor
+        border-top 1px solid $bgColor
+        border-bottom 1px solid $bgColor
 </style>

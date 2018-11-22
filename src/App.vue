@@ -42,6 +42,27 @@ export default {
       } else {
         this.transitionName = 'slide-left'
       }
+      if (to.path === '/merchant') {
+        this.transitionName = 'slide-right'
+      }
+      if (to.path === '/merchant' && from.path === '/merchant/info') {
+        this.transitionName = 'slide-right'
+      }
+      if (to.path === '/merchant/info' && from.path === '/merchant/changeinfo') {
+        this.transitionName = 'slide-right'
+      }
+      if (to.path === '/merchant/info' && from.path === '/merchant/changepsw') {
+        this.transitionName = 'slide-right'
+      }
+      if (to.path === '/publish' && from.path === '/merchant') {
+        this.transitionName = 'slide-right'
+      }
+      if (to.path === '/merchant' && from.path === '/publish') {
+        this.transitionName = 'slide-left'
+      }
+      if (from.path === '/merchant/getlist') {
+        this.transitionName = 'slide-right'
+      }
     }
   }
 }

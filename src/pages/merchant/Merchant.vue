@@ -2,7 +2,6 @@
   <div>
     <merchant-header></merchant-header>
     <merchant-published></merchant-published>
-    <div style="height: 2000px;"></div>
   </div>
 </template>
 

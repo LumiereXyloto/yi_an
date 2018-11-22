@@ -15,41 +15,33 @@
     <div class="show-block">
       <div class="title">我的个人资料</div>
       <div class="content-wrapper">
-        <div class="item-title">学校</div>
-        <div class="item-detail">{{list.school}}</div>
-      </div>
-      <hr>
-      <div class="content-wrapper">
-        <div class="item-title">学号</div>
-        <div class="item-detail">{{list.stuentId}}</div>
-      </div>
-      <hr>
-      <div class="content-wrapper">
         <div class="item-title">姓名</div>
-        <div class="item-detail">{{list.studentName}}</div>
-      </div>
-      <hr>
-      <div class="content-wrapper">
-        <div class="item-title">性别</div>
-        <div class="item-detail">{{list.studentSex}}</div>
+        <div class="item-detail">{{merchantInfo.name}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">电话</div>
-        <div class="item-detail">{{list.studentPhone}}</div>
+        <div class="item-detail">{{merchantInfo.phone}}</div>
       </div>
       <hr>
       <div class="content-wrapper">
         <div class="item-title">联系</div>
-        <div class="item-detail">{{list.studentContactWay}}</div>
+        <div class="item-detail">{{merchantInfo.QQorWX}}</div>
+      </div>
+      <hr>
+      <div class="content-wrapper">
+        <div class="item-title">单位</div>
+        <div class="item-detail">{{merchantInfo.unit}}</div>
       </div>
       <hr>
     </div>
-    <div class="change-button" @click="showBlock=!showBlock">修改个人资料</div>
-    <router-link to="/change">
-      <div class="change-button">修改账户密码</div>
+    <router-link to="/merchant/changeinfo">
+      <div class="changeInfo-button">修改个人资料</div>
     </router-link>
-    
+    <router-link to="/merchant/changepsw">
+      <div class="changePsw-button">修改账户密码</div>
+    </router-link>
+
   </div>
 </template>
 
@@ -59,7 +51,8 @@ export default {
   name: 'InfoHeader',
   data () {
     return {
-      logoUrl: './static/images/logo.png'
+      logoUrl: './static/images/logo.png',
+      merchantInfo: {}
     }
   },
   methods: {
@@ -89,9 +82,10 @@ export default {
     }
   },
   mounted () {
-    axios.post('http://132.232.56.186:8080/yian/merchant/showInfo.do')
+    let _this = this
+    axios.post('http://yian.our16.top:8080/yian/merchant/showInfo.do')
       .then(res => {
-        console.log(res)
+        _this.merchantInfo = res.data.data
       })
   }
 }
@@ -139,12 +133,12 @@ export default {
       position absolute
       top 1.26rem
   .show-block
+    margin-top 1.2rem
+    margin-bottom 1rem
     background-color #fff
     .title
-      margin-top .4rem
-      margin-bottom .2rem
-      padding .1rem .2rem
-      border-bottom 1px solid #D7D7D7
+      padding 0 .2rem .4rem .2rem
+      border-bottom 1px solid #E3E3E3
       text-align center
     .content-wrapper
       display flex
@@ -156,7 +150,17 @@ export default {
       .item-detail
         font-size .3rem
         margin-top .2rem
-  .change-button
+  .changeInfo-button
+    text-align center
+    margin 0 1.5rem
+    margin-top .3rem
+    height .6rem
+    line-height .6rem
+    background-color #ffffff
+    color $bgColor
+    border 1px solid #DFDFDF
+    border-radius .14rem
+  .changePsw-button
     text-align center
     margin 0 1.5rem
     margin-top .3rem
@@ -166,4 +170,3 @@ export default {
     color #ffffff
     border-radius .14rem
 </style>
-

@@ -105,24 +105,29 @@ export default {
     // },
     push () {
       let _this = this
-      axios.post('http://yian.our16.top:8080/yian/merchant/pushJobInfo.do', qs.stringify({
-        summary: this.list.summary,
-        jobTime: this.list.jobTime,
-        reward: this.list.reward,
-        rewardType: this.list.rewardType,
-        address: this.list.address,
-        details: this.list.details,
-        jobType: this.list.type,
-        hireNum: this.list.hireNum,
-        school: '10617'
-      }))
-        .then(res => {
-          if (res.data.status === 1) {
-            _this.$layer.closeAll()
-            _this.$layer.msg(res.data.msg)
-            _this.$router.replace('/merchant')
-          }
-        })
+      if (this.list.summary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address && this.list.details && this.list.type && this.list.hireNum) {
+        axios.post('http://yian.our16.top:8080/yian/merchant/pushJobInfo.do', qs.stringify({
+          summary: this.list.summary,
+          jobTime: this.list.jobTime,
+          reward: this.list.reward,
+          rewardType: this.list.rewardType,
+          address: this.list.address,
+          details: this.list.details,
+          jobType: this.list.type,
+          hireNum: this.list.hireNum,
+          school: '10617'
+        }))
+          .then(res => {
+            if (res.data.status === 1) {
+              _this.$layer.closeAll()
+              _this.$layer.msg(res.data.msg)
+              _this.$router.replace('/merchant')
+            }
+          })
+      } else {
+        this.$layer.closeAll()
+        this.$layer.msg('填写不符标准')
+      }
     }
   }
 }
