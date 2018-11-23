@@ -92,7 +92,7 @@ export default {
     stopItem () {
       let _this = this
       if (this.list.status !== 4) {
-        const index = this.$layer.confirm('您确定要停止招聘吗？', () => {
+        const index = this.$layer.confirm('您确定要停止招聘吗？', () => {// eslint-disable-line
           this.$layer.closeAll()
           axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
             jobId: this.$route.params.jobId,
@@ -111,7 +111,7 @@ export default {
     },
     deleteItem () {
       let _this = this
-      const index = this.$layer.confirm('您确定要删除该招聘吗？', () => {
+      const index = this.$layer.confirm('您确定要删除该招聘吗？', () => {// eslint-disable-line
         this.$layer.closeAll()
         axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
           jobId: this.$route.params.jobId,
@@ -225,6 +225,7 @@ export default {
         width 50%
         flex-grow 1
         text-align center
+        background-color #ffffff
         color $bgColor
         border-top 1px solid #E8E8E8
         border-bottom 1px solid #E8E8E8

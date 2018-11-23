@@ -96,7 +96,7 @@ export default {
       }
     },
     sendCode () {
-      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (email.test(this.list.uid)) {
         console.log(this.list.uid)
         this.time()
@@ -117,7 +117,7 @@ export default {
       }
     },
     checkEmail () {
-      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (email.test(this.list.uid)) {
         axios.post('http://yian.our16.top:8080/yian/account/checkAccountIsExist.do', qs.stringify({
           uid: this.list.uid
@@ -142,7 +142,7 @@ export default {
       }
     },
     checkPsw () {
-      if (this.list.ps !== '' && this.list.psw != '' && this.list.psw !== this.list.ps) {
+      if (this.list.ps !== '' && this.list.psw != '' && this.list.psw !== this.list.ps) {// eslint-disable-line
         this.$layer.closeAll()
         this.$layer.msg('两次密码输入不一致')
         return false

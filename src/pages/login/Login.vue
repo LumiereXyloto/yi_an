@@ -47,7 +47,7 @@ export default {
     sendInfo () {
       console.log(this.list.uid)
       console.log(this.list.psw)
-      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (this.list.uid === '' || this.list.psw === '') {
         this.$layer.closeAll()
         this.$layer.msg('账号/密码不能为空')

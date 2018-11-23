@@ -73,7 +73,7 @@ export default {
   },
   mounted () {
     let _this = this
-    var mobileSelect4 = new MobileSelect({
+    var mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
       title: '选择报酬类型',
       wheels: [
@@ -84,7 +84,7 @@ export default {
         _this.list.rewardType = indexArr[0]
       }
     })
-    var mobileSelect5 = new MobileSelect({
+    var mobileSelect5 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger5',
       title: '选择兼职类型',
       wheels: [

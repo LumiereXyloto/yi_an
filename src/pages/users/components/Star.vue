@@ -716,7 +716,7 @@ export default {
   },
   mounted () {
     let _this = this
-    var mobileSelect2 = new MobileSelect({
+    var mobileSelect2 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger2',
       title: '选择偏好',
       wheels: [

@@ -45,7 +45,7 @@ export default {
       this.$router.go(-1)
     },
     getList () {
-      const index = this.$layer.confirm('您确定要导出名单吗？', () => {
+      this.$layer.confirm('您确定要导出名单吗？', () => {
         this.$layer.closeAll()
         axios.post('http://yian.our16.top:8080/yian/merchant/getSignInfo.do', qs.stringify({
           jobId: this.jobId
