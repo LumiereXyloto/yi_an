@@ -11,11 +11,6 @@
     </div>
     <hr>
     <div class="content-wrapper1">
-      <div class="item-title1">兼职详情</div>
-      <textarea class="item-detail1" cols="30" rows="3" v-model="list.details"></textarea>
-    </div>
-    <hr>
-    <div class="content-wrapper1">
       <div class="item-title1">兼职时间</div>
       <input class="item-detail1" type="text" v-model="list.jobTime">
     </div>
@@ -43,6 +38,11 @@
     <div class="content-wrapper1">
       <div class="item-title1">单位报酬</div>
       <input class="item-detail1" type="text" v-model="list.reward">
+    </div>
+    <hr>
+    <div class="content-wrapper1">
+      <div class="item-title1">兼职详情</div>
+      <textarea class="item-detail1" cols="30" rows="3" v-model="list.details"></textarea>
     </div>
     <hr>
     <div class="change-button" @click="push">发布兼职</div>

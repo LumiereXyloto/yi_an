@@ -1,7 +1,7 @@
 <template>
   <div class="position-wrapper">
     <div class="flex-wrapper">
-      <div class="star" ref="star" @click="star">收藏</div>
+      <!-- <div class="star" ref="star" @click="star">收藏</div> -->
       <div class="sign-up" @click="checkSignUp">{{isSignText}}</div>
     </div>
   </div>
@@ -92,18 +92,18 @@ export default {
         }
       })
     },
-    star () {
-      this.isStar = !this.isStar
-      if (this.isStar === true) {
-        this.$layer.closeAll()
-        this.$refs.star.innerText = '取消收藏'
-        this.$layer.msg('收藏成功')
-      } else if (this.isStar === false) {
-        this.$layer.closeAll()
-        this.$refs.star.innerText = '收藏'
-        this.$layer.msg('取消成功')
-      }
-    },
+    // star () {
+    //   this.isStar = !this.isStar
+    //   if (this.isStar === true) {
+    //     this.$layer.closeAll()
+    //     this.$refs.star.innerText = '取消收藏'
+    //     this.$layer.msg('收藏成功')
+    //   } else if (this.isStar === false) {
+    //     this.$layer.closeAll()
+    //     this.$refs.star.innerText = '收藏'
+    //     this.$layer.msg('取消成功')
+    //   }
+    // },
     cancelSignUp () {
       let _this = this
       this.$layer.open({
@@ -130,7 +130,8 @@ export default {
                 _this.$layer.msg(res.data.msg)
                 bus.$emit('delNum', 1)
               } else {
-                console.log('取消报名出现error')
+                _this.$layer.closeAll()
+                _this.$layer.msg(res.data.msg)
               }
             })
         },
@@ -154,16 +155,16 @@ export default {
       display flex
       height $headerHeight
       line-height $headerHeight
-      .star
-        width 50%
-        height $headerHeight
-        line-height $headerHeight
-        color $bgColor
-        border-top 1px solid #E8E8E8
-        border-bottom 1px solid #E8E8E8
-        flex-grow 1
-        text-align center
-        background-color #ffffff
+      // .star
+      //   width 50%
+      //   height $headerHeight
+      //   line-height $headerHeight
+      //   color $bgColor
+      //   border-top 1px solid #E8E8E8
+      //   border-bottom 1px solid #E8E8E8
+      //   flex-grow 1
+      //   text-align center
+      //   background-color #ffffff
       .sign-up
         width 50%
         height $headerHeight

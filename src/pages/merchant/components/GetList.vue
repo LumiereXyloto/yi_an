@@ -45,13 +45,14 @@ export default {
       this.$router.go(-1)
     },
     getList () {
+      let _this = this
       this.$layer.confirm('您确定要导出名单吗？', () => {
-        this.$layer.closeAll()
-        axios.post('http://yian.our16.top:8080/yian/merchant/getSignInfo.do', qs.stringify({
-          jobId: this.jobId
-        }))
+        _this.$layer.closeAll()
+        let excelhref = 'http://yian.our16.top:8080/yian/merchant/getSignInfo.do?' + 'jobId=' + _this.jobId
+        console.log(excelhref)
+        window.location.href = excelhref
       }, () => {
-        this.$layer.closeAll()
+        _this.$layer.closeAll()
       })
     }
   },

@@ -35,6 +35,10 @@
       </div>
       <hr>
     </div>
+    <div class="photo-button">
+      <span class="upload-text">上传证件</span>
+      <input style="opacity:0" type="file" ref="file" name="file" accept="image/png,image/jpg,image/jpeg" @change="upload()">
+    </div>
     <router-link to="/merchant/changeinfo">
       <div class="changeInfo-button">修改个人资料</div>
     </router-link>
@@ -79,6 +83,30 @@ export default {
           _this.$layer.closeAll()
         }
       })
+    },
+    upload () {
+      let _this = this
+      console.log('confirm upload')
+      let file = this.$refs.file.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+      let formData = new FormData()
+      formData.append('photo', file)
+      reader.onload = function (e) {
+        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', formData, {
+          headers: {'Content-Type': 'multipart/form-data'}
+        })
+          .then(res => {
+            console.log(res)
+            if (res.data.status === 1) {
+              _this.$layer.closeAll()
+              _this.$layer.msg('上传成功')
+            } else {
+              _this.$layer.closeAll()
+              _this.$layer.msg('似乎出现了问题')
+            }
+          })
+      }
     }
   },
   mounted () {
@@ -150,14 +178,30 @@ export default {
       .item-detail
         font-size .3rem
         margin-top .2rem
+  .photo-button
+    position relative
+    text-align center
+    margin 0 1.5rem
+    margin-top .7rem
+    height .6rem
+    line-height .6rem
+    background-color #F9F9F9
+    color #007CF9
+    border-radius .14rem
+    border 1px solid #E4E4E4
+    .upload-text
+      position absolute
+      top 0
+      left 0
+      right 0
   .changeInfo-button
     text-align center
     margin 0 1.5rem
     margin-top .3rem
     height .6rem
     line-height .6rem
-    background-color #ffffff
-    color $bgColor
+    background-color $bgColor
+    color #ffffff
     border 1px solid #DFDFDF
     border-radius .14rem
   .changePsw-button
