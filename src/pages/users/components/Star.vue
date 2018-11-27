@@ -20,7 +20,9 @@
         我的关注
       </div>
     </div>
-    <div class="banner"></div>
+    <div class="banner">
+      <img src="@/assets/images/banner.png" alt="gg">
+    </div>
     <div id="trigger2">修改偏好</div>
     <div class="block-title">我的偏好</div>
     <ul>
@@ -778,8 +780,9 @@ export default {
       left: 0
       color: #ffffff
   .banner
-    height 2.16rem
     background-color #A6DCFD
+  .banner img
+    width 100%
   #trigger2
     background-color #ffffff
     height .6rem

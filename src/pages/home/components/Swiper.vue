@@ -29,6 +29,9 @@ export default {
       }, {
         id: '0002',
         imgUrl: 'https://image.ganjistatic1.com/gjfsqq/gjupload/671e4c82eddf4f269be1ae9034928245_0-0_7-5.png'
+      }, {
+        id: '0003',
+        imgUrl: 'https://image.ganjistatic1.com/gjfsqq/ec8d3987fafb474fb088394c3f60f0fa_0-0_7-5.jpg'
       }]
     }
   },

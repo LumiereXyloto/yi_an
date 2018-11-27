@@ -21,7 +21,9 @@
       </div>
     </div>
 
-    <div class="banner"></div>
+    <div class="banner">
+      <img src="@/assets/images/banner.png" alt="gg">
+    </div>
     <div class="show-block">
       <div class="title">我的消息(3)</div>
       <div class="content-wrapper">
@@ -129,8 +131,9 @@ export default {
       left: 0
       color: #ffffff
   .banner
-    height 2.16rem
     background-color #A6DCFD
+  .banner img
+    width 100%
   .show-block
     background-color #fff
     .title

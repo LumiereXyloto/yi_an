@@ -21,7 +21,9 @@
       </div>
     </div>
 
-    <div class="banner"></div>
+    <div class="banner">
+      <img src="@/assets/images/banner.png" alt="gg">
+    </div>
 
     <div class="block-title">已经报名({{length}})</div>
     <div class="showBlock">
@@ -131,8 +133,9 @@ export default {
       left: 0
       color: #ffffff
   .banner
-    height 2.16rem
     background-color #A6DCFD
+  .banner img
+    width 100%
   .block-title
     background-color #EEEEEE
     font-size .28rem

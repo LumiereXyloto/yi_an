@@ -59,10 +59,10 @@ export default {
         shade: true,
         shadeClose: false,
         yes (index, $layer) {
-          console.log('点击确定')
+          _this.$layer.closeAll()
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
           // return false
-          _this.$layer.closeAll()
+          console.log('点击确定')
           axios.post('http://yian.our16.top:8080/yian/parttimeHall/applyParttime.do', qs.stringify({
             jobId: _this.params.jobId,
             merchantId: _this.params.merchantId
@@ -70,6 +70,7 @@ export default {
             withCredentials: true
           })
             .then((res) => {
+              _this.$layer.closeAll()
               if (res.data.status === 1) {
                 _this.params.isSign = '1'
                 _this.isSignText = '已报名'
@@ -78,7 +79,7 @@ export default {
                 bus.$emit('addNum', 1)
               } else {
                 _this.$layer.closeAll()
-                _this.$layer.msg('报名出现error')
+                _this.$layer.msg(res.data.msg)
               }
             })
             .catch(() => {
@@ -113,16 +114,17 @@ export default {
         shade: true,
         shadeClose: false,
         yes (index, $layer) {
-          console.log('点击确定')
+          _this.$layer.closeAll()
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
           // return false
-          _this.$layer.closeAll()
+          console.log('点击确定')
           axios.post('http://yian.our16.top:8080/yian/parttimeHall/cancelParttime.do', qs.stringify({
             jobId: _this.params.jobId
           }), {
             withCredentials: true
           })
             .then((res) => {
+              _this.$layer.closeAll()
               if (res.data.status === 1) {
                 _this.params.isSign = '0'
                 _this.isSignText = '立即报名'

@@ -11,7 +11,9 @@
       </router-link>
     </div>
 
-    <div class="banner"></div>
+    <div class="banner">
+      <img src="@/assets/images/banner.png" alt="gg">
+    </div>
 
     <div v-show="showBlock">
       <div class="show-block">
@@ -229,8 +231,9 @@ export default {
       color: #ffffff
       font-size: .4rem
   .banner
-    height 2.16rem
     background-color #A6DCFD
+  .banner img
+    width 100%
   .show-block
     background-color #fff
     .title
