@@ -12,6 +12,10 @@
     <div class="input-wrapper">
       <input class="input" type="text" placeholder="用户名" v-model="list.uid">
       <input class="input" type="password" placeholder="请填写密码" v-model="list.psw">
+      <div class="isRememberPsw">
+        <span>记住密码</span>
+        <input type="checkbox" value="1" onclick="savePsw()">
+      </div>
     </div>
     <div class="login-button" @click="sendInfo">登录</div>
     <div class="footer-info">
@@ -40,7 +44,8 @@ export default {
       list: {
         uid: '',
         psw: ''
-      }
+      },
+      isRememberPsw: false
     }
   },
   methods: {
@@ -78,6 +83,9 @@ export default {
         this.$layer.closeAll()
         this.$layer.msg('登录失败')
       }
+    },
+    savePsw () {
+      console.log('psw')
     }
   }
 }
@@ -116,6 +124,9 @@ export default {
       padding: .2rem
       margin: .4rem
       margin-top: .6rem
+    .isRememberPsw
+      display flex
+      justify-content center
   .login-button
     margin: .4rem
     margin-top: .6rem
