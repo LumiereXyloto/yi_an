@@ -13,8 +13,8 @@
       <input class="input" type="text" placeholder="用户名" v-model="list.uid">
       <input class="input" type="password" placeholder="请填写密码" v-model="list.psw">
       <div class="isRememberPsw">
-        <span>记住密码</span>
-        <input type="checkbox" value="1" onclick="savePsw()">
+        <span style="color:#A5A5A5;">记住密码</span>
+        <input type="checkbox" value="1" v-model="isRememberPsw">
       </div>
     </div>
     <div class="login-button" @click="sendInfo">登录</div>
@@ -45,18 +45,20 @@ export default {
         uid: '',
         psw: ''
       },
-      isRememberPsw: false
+      isRememberPsw: ''
     }
   },
   methods: {
     sendInfo () {
-      console.log(this.list.uid)
-      console.log(this.list.psw)
       let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (this.list.uid === '' || this.list.psw === '') {
         this.$layer.closeAll()
         this.$layer.msg('账号/密码不能为空')
       } else if (email.test(this.list.uid)) {
+        console.log(this.isRememberPsw)// 记住密码
+        if (this.isRememberPsw) {
+          this.savePsw()
+        }
         axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
           uid: this.list.uid,
           psw: this.list.psw
@@ -85,7 +87,19 @@ export default {
       }
     },
     savePsw () {
-      console.log('psw')
+      window.localStorage.setItem('isSave', this.isRememberPsw)
+      window.localStorage.setItem('uid', this.list.uid)
+      window.localStorage.setItem('psw', this.list.psw)
+    }
+  },
+  mounted () {
+    this.isRememberPsw = window.localStorage.getItem('isSave')
+    if (this.isRememberPsw) {
+      this.list.uid = window.localStorage.getItem('uid')
+      this.list.psw = window.localStorage.getItem('psw')
+    } else {
+      this.list.uid = ''
+      this.list.psw = ''
     }
   }
 }
