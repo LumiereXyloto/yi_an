@@ -7,7 +7,7 @@
     <div class="icon-img">
       <router-link class="img" tag="img" :src="imgs.signUrl" to="/sign"></router-link>
       <router-link class="img" tag="img" :src="imgs.starUrl" to="/star"></router-link>
-      <router-link class="img" tag="img" :src="imgs.infoUrl" to="/info"></router-link>
+      <router-link class="img" tag="img" :src="imgs.infoUrl" to="/message"></router-link>
       <router-link class="img" tag="img" :src="imgs.userUrl" to="/person"></router-link>
       <!-- <img class="img" src="@/assets/images/signup.png" alt="gg">
       <img class="img" src="@/assets/images/star.png" alt="gg">
@@ -21,7 +21,7 @@
       <router-link to="/star">
         <div>我的关注</div>
       </router-link>
-      <router-link to="/info">
+      <router-link to="/message">
         <div>我的消息</div>
       </router-link>
       <router-link to="/person">
@@ -76,12 +76,12 @@ export default {
     }
   },
   mounted () {
-    axios.post('http://yian.our16.top:8080/yian/student/getPersonalInfor.do')
+    axios.post('http://equator8848.xyz:8080/yian/student/getPersonalInfor.do')
       .then(res => {
         console.log(res.data.data)
         this.infoList = res.data.data
       })
-    axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
+    axios.post('http://equator8848.xyz:8080/yian/student/getSignUpParttime.do')
       .then(res => {
         if (res.data.data) {
           console.log(res.data.data)

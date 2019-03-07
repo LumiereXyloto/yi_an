@@ -59,7 +59,7 @@ export default {
     sendInfo () {
       if (this.list.uid && this.list.ps && this.list.psw && this.list.authCode && this.list.userType) {
         console.log(this.list)
-        axios.post('http://yian.our16.top:8080/yian/account/register.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/register.do', qs.stringify({
           uid: this.list.uid,
           psw: this.list.psw,
           authCode: this.list.authCode,
@@ -100,7 +100,7 @@ export default {
       if (email.test(this.list.uid)) {
         console.log(this.list.uid)
         this.time()
-        axios.post('http://yian.our16.top:8080/yian/account/verificationEmail.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/verificationEmail.do', qs.stringify({
           uid: this.list.uid,
           action: '0'
         }))
@@ -119,7 +119,7 @@ export default {
     checkEmail () {
       let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (email.test(this.list.uid)) {
-        axios.post('http://yian.our16.top:8080/yian/account/checkAccountIsExist.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/checkAccountIsExist.do', qs.stringify({
           uid: this.list.uid
         }))
           .then((res) => {

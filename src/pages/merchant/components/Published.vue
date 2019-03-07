@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted () {
-    axios.post('http://yian.our16.top:8080/yian/merchant/showBriefJobInfo.do')
+    axios.post('http://equator8848.xyz:8080/yian/merchant/showBriefJobInfo.do')
       .then(res => {
         console.log(res)
         this.list = res.data.data

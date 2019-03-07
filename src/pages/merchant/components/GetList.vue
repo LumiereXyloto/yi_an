@@ -48,7 +48,7 @@ export default {
       let _this = this
       this.$layer.confirm('您确定要导出名单吗？', () => {
         _this.$layer.closeAll()
-        let excelhref = 'http://yian.our16.top:8080/yian/merchant/getSignInfo.do?' + 'jobId=' + _this.jobId
+        let excelhref = 'http://equator8848.xyz:8080/yian/merchant/getSignInfo.do?' + 'jobId=' + _this.jobId
         console.log(excelhref)
         window.location.href = excelhref
       }, () => {
@@ -58,7 +58,7 @@ export default {
   },
   mounted () {
     this.jobId = this.$route.params.jobId
-    axios.post('http://yian.our16.top:8080/yian/merchant/showApplyStudent.do', qs.stringify({
+    axios.post('http://equator8848.xyz:8080/yian/merchant/showApplyStudent.do', qs.stringify({
       jobId: this.jobId
     }))
       .then(res => {

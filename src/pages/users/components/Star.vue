@@ -690,7 +690,7 @@ export default {
     sendChangeRequest () {
       let _this = this
       console.log(this.jobTypeId, this.rewardTypeId, this.rewardId)
-      axios.post('http://yian.our16.top:8080/yian/preference/changePreferenceJobType.do', qs.stringify({
+      axios.post('http://equator8848.xyz:8080/yian/preference/changePreferenceJobType.do', qs.stringify({
         jobTpyeId: this.jobTypeId,
         rewadTypeId: this.rewardTypeId,
         rewadId: this.rewardId
@@ -703,7 +703,7 @@ export default {
     },
     sendPreferRequest () {
       let _this = this
-      axios.post('http://yian.our16.top:8080/yian/student/getAttentionedType.do')
+      axios.post('http://equator8848.xyz:8080/yian/student/getAttentionedType.do')
         .then(res => {
           _this.preferList = res.data.data
           console.log(_this.preferList)

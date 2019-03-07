@@ -82,7 +82,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted () {
-    axios.post('http://yian.our16.top:8080/yian/student/getSignUpParttime.do')
+    axios.post('http://equator8848.xyz:8080/yian/student/getSignUpParttime.do')
       .then(res => {
         if (res.data.data) {
           console.log(res.data.data)

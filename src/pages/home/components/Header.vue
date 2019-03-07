@@ -1,15 +1,15 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <div class="iconfont back-icon">&#xe624;</div>
+      <!-- <div class="iconfont back-icon">&#xe624;</div> -->
     </div>
     <div class="header-title">
       易安兼职
     </div>
     <router-link to="/user">
       <div class="header-right">
-        个人
-        <span class="iconfont arrow-icon">&#xe64a;</span>
+        <!-- 个人
+        <span class="iconfont arrow-icon">&#xe64a;</span> -->
       </div>
     </router-link>
   </div>

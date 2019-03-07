@@ -63,7 +63,7 @@ export default {
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
           // return false
           console.log('点击确定')
-          axios.post('http://yian.our16.top:8080/yian/parttimeHall/applyParttime.do', qs.stringify({
+          axios.post('http://equator8848.xyz:8080/yian/parttimeHall/applyParttime.do', qs.stringify({
             jobId: _this.params.jobId,
             merchantId: _this.params.merchantId
           }), {
@@ -118,7 +118,7 @@ export default {
           // 函数返回 false 可以阻止弹层自动关闭，需要手动关闭
           // return false
           console.log('点击确定')
-          axios.post('http://yian.our16.top:8080/yian/parttimeHall/cancelParttime.do', qs.stringify({
+          axios.post('http://equator8848.xyz:8080/yian/parttimeHall/cancelParttime.do', qs.stringify({
             jobId: _this.params.jobId
           }), {
             withCredentials: true

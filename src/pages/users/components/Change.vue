@@ -49,7 +49,7 @@ export default {
         this.$layer.closeAll()
         this.$layer.msg('请检查你的输入')
       } else {
-        axios.post('http://yian.our16.top:8080/yian/account/changePsw.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/changePsw.do', qs.stringify({
           oldPsw: this.oldPsw,
           newPsw: this.newPsw
         }))

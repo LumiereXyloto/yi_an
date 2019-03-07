@@ -51,7 +51,7 @@ export default {
   },
   mounted () {
     let _this = this
-    axios.post('http://yian.our16.top:8080/yian/merchant/showInfo.do')
+    axios.post('http://equator8848.xyz:8080/yian/merchant/showInfo.do')
       .then(res => {
         _this.merchantInfo = res.data.data
       })
@@ -72,7 +72,7 @@ export default {
         this.changeList.unit = this.merchantInfo.unit
       }
       console.log(this.changeList)
-      axios.post('http://yian.our16.top:8080/yian/merchant/changeContactInfo.do', qs.stringify({
+      axios.post('http://equator8848.xyz:8080/yian/merchant/changeContactInfo.do', qs.stringify({
         phone: this.changeList.phone,
         name: this.changeList.name,
         QQorWX: this.changeList.QQorWX,

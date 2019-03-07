@@ -17,11 +17,16 @@ import MDetail from '@/pages/merchant/components/MDetail'
 import ChangeInfo from '@/pages/merchant/components/ChangeInfo'
 import ChangePsw from '@/pages/merchant/components/ChangePsw'
 import GetList from '@/pages/merchant/components/GetList'
+import Message from '@/pages/message/message'
+import MessageDetail from '@/pages/message-detail/message-detail'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
+    path: '/',
+    redirect: '/index'
+  }, {
     path: '/login',
     name: 'Login',
     component: Login
@@ -30,7 +35,7 @@ export default new Router({
     name: 'Register',
     component: Register
   }, {
-    path: '/',
+    path: '/index',
     name: 'Home',
     component: Home,
     meta: {
@@ -131,6 +136,20 @@ export default new Router({
     path: '/merchant/getlist',
     name: 'GetList',
     component: GetList,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/message',
+    name: 'Message',
+    component: Message,
+    meta: {
+      requireLogin: true
+    }
+  }, {
+    path: '/message/:messageId',
+    name: 'MessageDetail',
+    component: MessageDetail,
     meta: {
       requireLogin: true
     }

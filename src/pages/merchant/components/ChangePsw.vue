@@ -38,7 +38,7 @@ export default {
     changePsw () {
       let _this = this
       if (this.oldPSw !== '' && this.newPsw !== '') {
-        axios.post('http://yian.our16.top:8080/yian/account/changePsw.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/changePsw.do', qs.stringify({
           oldPsw: this.oldPSw,
           newPsw: this.newPsw
         }))

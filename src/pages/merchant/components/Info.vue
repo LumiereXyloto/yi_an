@@ -70,7 +70,7 @@ export default {
         shade: true,
         yes (index, $layer) {
           console.log('点击确定')
-          axios.get('http://yian.our16.top:8080/yian/account/logout.do')
+          axios.get('http://equator8848.xyz:8080/yian/account/logout.do')
             .then(res => {
               console.log(res)
               _this.$layer.closeAll()
@@ -93,7 +93,7 @@ export default {
       let formData = new FormData()
       formData.append('photo', file)
       reader.onload = function (e) {
-        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', formData, {
+        axios.post('http://equator8848.xyz:8080/yian/account/uploadPhoto.do', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
           .then(res => {
@@ -111,7 +111,7 @@ export default {
   },
   mounted () {
     let _this = this
-    axios.post('http://yian.our16.top:8080/yian/merchant/showInfo.do')
+    axios.post('http://equator8848.xyz:8080/yian/merchant/showInfo.do')
       .then(res => {
         _this.merchantInfo = res.data.data
       })

@@ -106,7 +106,7 @@ export default {
     push () {
       let _this = this
       if (this.list.summary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address && this.list.details && this.list.type && this.list.hireNum) {
-        axios.post('http://yian.our16.top:8080/yian/merchant/pushJobInfo.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/merchant/pushJobInfo.do', qs.stringify({
           summary: this.list.summary,
           jobTime: this.list.jobTime,
           reward: this.list.reward,

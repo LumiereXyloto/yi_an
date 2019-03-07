@@ -59,7 +59,7 @@ export default {
         if (this.isRememberPsw) {
           this.savePsw()
         }
-        axios.post('http://yian.our16.top:8080/yian/account/userLogin.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/account/userLogin.do', qs.stringify({
           uid: this.list.uid,
           psw: this.list.psw
         }))
@@ -80,13 +80,14 @@ export default {
         this.$layer.closeAll()
         this.$layer.msg('登录成功')
         console.log(res.data.msg, '学生')
-        this.$router.replace('/')
+        this.$router.replace('/index')
       } else {
         this.$layer.closeAll()
         this.$layer.msg('登录失败')
       }
     },
     savePsw () {
+      console.log(1)
       window.localStorage.setItem('isSave', this.isRememberPsw)
       window.localStorage.setItem('uid', this.list.uid)
       window.localStorage.setItem('psw', this.list.psw)

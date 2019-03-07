@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     sendRequest () {
-      axios.post('http://yian.our16.top:8080/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
+      axios.post('http://equator8848.xyz:8080/yian/parttimeHall/getParttimeDetail.do', qs.stringify({
         jobId: this.$route.params.jobId
       }), {
         withCredentials: true

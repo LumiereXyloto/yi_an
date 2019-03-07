@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     sendRequest () {
-      axios.post('http://yian.our16.top:8080/yian/parttimeHall/seekByParttimeType.do', qs.stringify({
+      axios.post('http://equator8848.xyz:8080/yian/parttimeHall/seekByParttimeType.do', qs.stringify({
         parttimeType: this.typeStore,
         pageNum: '0',
         onePageNum: '0'

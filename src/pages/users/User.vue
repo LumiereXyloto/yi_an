@@ -2,17 +2,20 @@
   <div>
     <user-header></user-header>
     <user-content></user-content>
+    <blank></blank>
   </div>
 </template>
 
 <script>
 import UserHeader from './components/Header'
 import UserContent from './components/Content'
+import Blank from '@/pages/tab/blank'
 export default {
   name: 'User',
   components: {
     UserHeader,
-    UserContent
+    UserContent,
+    Blank
   },
   data () {
     return {

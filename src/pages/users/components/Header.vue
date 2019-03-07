@@ -34,7 +34,7 @@ export default {
         shade: true,
         yes (index, $layer) {
           console.log('点击确定')
-          axios.get('http://yian.our16.top:8080/yian/account/logout.do')
+          axios.get('http://equator8848.xyz:8080/yian/account/logout.do')
             .then(res => {
               console.log(res)
               _this.$layer.closeAll()

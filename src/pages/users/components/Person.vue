@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     getUserInfo () {
-      axios.post('http://yian.our16.top:8080/yian/student/getPersonalInfor.do')
+      axios.post('http://equator8848.xyz:8080/yian/student/getPersonalInfor.do')
         .then((res) => {
           console.log('用户信息', res.data.data)
           this.list = res.data.data
@@ -166,7 +166,7 @@ export default {
         console.log('性别转换错误')
       }
       console.log(this.changeList)
-      axios.post('http://yian.our16.top:8080/yian/student/updateStduentInfor.do', qs.stringify({
+      axios.post('http://equator8848.xyz:8080/yian/student/updateStduentInfor.do', qs.stringify({
         school: '10617',
         studentName: this.changeList.studentName,
         studentSex: this.sex,
@@ -186,7 +186,7 @@ export default {
       let formData = new FormData()
       formData.append('photo', file)
       reader.onload = function (e) {
-        axios.post('http://yian.our16.top:8080/yian/account/uploadPhoto.do', formData, {
+        axios.post('http://equator8848.xyz:8080/yian/account/uploadPhoto.do', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         })
           .then(res => {

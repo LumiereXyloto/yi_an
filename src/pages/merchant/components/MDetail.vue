@@ -94,7 +94,7 @@ export default {
       if (this.list.status !== 4) {
         const index = this.$layer.confirm('您确定要停止招聘吗？', () => {// eslint-disable-line
           this.$layer.closeAll()
-          axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
+          axios.post('http://equator8848.xyz:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
             jobId: this.$route.params.jobId,
             action: 2
           }))
@@ -113,7 +113,7 @@ export default {
       let _this = this
       const index = this.$layer.confirm('您确定要删除该招聘吗？', () => {// eslint-disable-line
         this.$layer.closeAll()
-        axios.post('http://yian.our16.top:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
+        axios.post('http://equator8848.xyz:8080/yian/merchant/changeJobInfoStatus.do', qs.stringify({
           jobId: this.$route.params.jobId,
           action: 1
         }))

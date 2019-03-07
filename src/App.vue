@@ -2,21 +2,30 @@
   <div id="app">
     <keep-alive>
       <transition :name="transitionName">
-        <router-view class="child-view"/>
+        <div>
+          <tab v-if="tabType"></tab>
+          <router-view class="child-view"/>
+        </div>
       </transition>
     </keep-alive>
   </div>
 </template>
 
 <script>
+import Tab from '@/pages/tab/tab'
 export default {
   name: 'App',
+  components: {
+    Tab
+  },
   data () {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
+      tabType: false
     }
   },
   mounted () {
+    this.checkTabType()
   },
   // 监听路由的路径，可以通过不同的路径去选择不同的切换效果
   watch: {
@@ -62,6 +71,30 @@ export default {
       }
       if (from.path === '/merchant/getlist') {
         this.transitionName = 'slide-right'
+      }
+    },
+    $route (e) {
+      if (e.name === 'Home') {
+        this.tabType = true
+      } else if (e.name === 'Message') {
+        this.tabType = true
+      } else if (e.name === 'User') {
+        this.tabType = true
+      } else {
+        this.tabType = false
+      }
+    }
+  },
+  methods: {
+    checkTabType () {
+      if (this.$route.name === 'Home') {
+        this.tabType = true
+      } else if (this.$route.name === 'Message') {
+        this.tabType = true
+      } else if (this.$route.name === 'User') {
+        this.tabType = true
+      } else {
+        this.tabType = false
       }
     }
   }
